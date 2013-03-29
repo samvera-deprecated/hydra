@@ -1,4 +1,4 @@
-Potential Triggers for ProjectHydra Framework Major Releases
+Potential Triggers for hydra Framework Major Releases
 
 * rails - Major release definite, minor release possible
 * ruby - Major release definite, minor release possible

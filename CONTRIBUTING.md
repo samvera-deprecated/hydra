@@ -6,7 +6,7 @@ There are a few guidelines that we need contributors to follow so that we can ha
 ## Getting Started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit a [Github issue](https://github.com/projecthydra/projecthydra/issues) by:
+* Submit a [Github issue](https://github.com/projecthydra/hydra/issues) by:
   * Clearly describing the issue
     * Provide a descriptive summary
     * Explain the expected behavior
@@ -66,7 +66,7 @@ https://wiki.duraspace.org/display/hydra/Hydra+Project+Intellectual+Property+Lic
 ## Submitting Changes
 
 * Push your changes to a topic branch in your fork of the repository.
-* Submit a pull request to the project https://github.com/projecthydra/projecthydra
+* Submit a pull request to the project https://github.com/hydra/hydra
 * Update your Github issue – if you use the hub command, this can be automated – by associating the issue with the pull request.
 
 # Additional Resources

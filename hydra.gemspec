@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'projecthydra/version'
+require 'hydra/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "projecthydra"
-  gem.version       = Projecthydra::VERSION
+  gem.name          = "hydra"
+  gem.version       = Hydra::VERSION
   gem.authors       = [
     "Jeremy Friesen",
   ]
@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   ]
   gem.description   = %q{Project Hydra Stack Dependencies}
   gem.summary       = %q{Project Hydra Stack Dependencies}
-  gem.homepage      = "http://projecthydra.org/"
+  gem.homepage      = "http://hydra.org/"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
