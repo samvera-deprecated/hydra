@@ -10,8 +10,8 @@ If you need to previous hydra gem, you can use `gem ngauthier-hydra`.
 
 ## Code Status
 
-[![Build Status](https://travis-ci.org/hydra/hydra-head.png?branch=master)](https://travis-ci.org/hydra/hydra-head)
-[![Dependencies Status](https://gemnasium.com/hydra/hydra.png)](https://gemnasium.com/hydra/hydra)
+[![Build Status](https://travis-ci.org/projecthydra/hydra-head.png?branch=master)](https://travis-ci.org/projecthydrahydra/hydra-head)
+[![Dependencies Status](https://gemnasium.com/projecthydra/hydra.png)](https://gemnasium.com/projecthydra/hydra)
 
 ## Contributing
 
