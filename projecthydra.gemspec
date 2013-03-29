@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rails', '~> 3.2.13'
   gem.add_dependency 'om', '2.0.0'
   gem.add_dependency 'solrizer', '3.0.0'
-  gem.add_dependency 'rsolr', '2.0.0'
+  gem.add_dependency 'rsolr', '1.0.8'
   gem.add_dependency 'blacklight', '4.1.0'
   gem.add_dependency 'nokogiri', '1.5.9'
   gem.add_dependency 'rubydora', '1.6.1'
