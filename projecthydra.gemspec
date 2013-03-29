@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Projecthydra::VERSION
   gem.authors       = ["Jeremy Friesen"]
   gem.email         = ["jeremy.n.friesen@gmail.com"]
-  gem.description   = %q{}
-  gem.summary       = %q{}
+  gem.description   = %q{Project Hydra Stack Dependencies}
+  gem.summary       = %q{Project Hydra Stack Dependencies}
   gem.homepage      = "http://projecthydra.org/"
 
   gem.files         = `git ls-files`.split($/)

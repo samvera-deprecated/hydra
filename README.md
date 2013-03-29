@@ -1,6 +1,6 @@
 # Project Hydra
 
-TODO: Write a gem description
+Project Hydra Stack Dependencies
 
 ## Installation
 
