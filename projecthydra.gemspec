@@ -6,8 +6,12 @@ require 'projecthydra/version'
 Gem::Specification.new do |gem|
   gem.name          = "projecthydra"
   gem.version       = Projecthydra::VERSION
-  gem.authors       = ["Jeremy Friesen"]
-  gem.email         = ["jeremy.n.friesen@gmail.com"]
+  gem.authors       = [
+    "Jeremy Friesen",
+  ]
+  gem.email         = [
+    "jeremy.n.friesen@gmail.com",
+  ]
   gem.description   = %q{Project Hydra Stack Dependencies}
   gem.summary       = %q{Project Hydra Stack Dependencies}
   gem.homepage      = "http://projecthydra.org/"
