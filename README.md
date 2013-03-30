@@ -19,7 +19,7 @@ If you need to previous hydra gem, you can use `gem ngauthier-hydra`.
 
 ## Developer Wiki
 
-https://github.com/hydra/hydra/wiki
+https://github.com/projecthydra/hydra/wiki
 
 ## Installation
 
