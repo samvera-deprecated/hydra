@@ -66,7 +66,7 @@ https://wiki.duraspace.org/display/hydra/Hydra+Project+Intellectual+Property+Lic
 ## Submitting Changes
 
 * Push your changes to a topic branch in your fork of the repository.
-* Submit a pull request to the project https://github.com/hydra/hydra
+* Submit a pull request to the project https://github.com/projecthydra/hydra
 * Update your Github issue – if you use the hub command, this can be automated – by associating the issue with the pull request.
 
 # Additional Resources
