@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   ]
   gem.description   = %q{Project Hydra Stack Dependencies}
   gem.summary       = %q{Project Hydra Stack Dependencies}
-  gem.homepage      = "http://hydra.org/"
+  gem.homepage      = "http://projecthydra.org/"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
