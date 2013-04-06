@@ -1,5 +1,10 @@
 require "hydra/version"
-
-module Hydra
-  # Your code goes here...
-end
+require 'hydra/head'
+require 'active-fedora'
+require 'rails'
+require 'om'
+require 'solrizer'
+require 'rsolr'
+require 'blacklight'
+require 'nokogiri'
+require 'rubydora'
