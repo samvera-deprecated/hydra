@@ -37,6 +37,4 @@ Or install it yourself as:
 
 Then run:
 
-    $ rails g blacklight --devise
-    $ rails g hydra:head -f
-    $ rake db:migrate
+    $ rails g hydra:install
