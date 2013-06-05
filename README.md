@@ -25,7 +25,7 @@ https://github.com/projecthydra/hydra/wiki
 
 Add this line to your application's Gemfile:
 
-    gem 'hydra'
+    gem 'hydra', :require => 'hydra6'
 
 And then execute:
 
@@ -34,3 +34,9 @@ And then execute:
 Or install it yourself as:
 
     $ gem install hydra
+
+Then run:
+
+    $ rails g blacklight --devise
+    $ rails g hydra:head -f
+    $ rake db:migrate
