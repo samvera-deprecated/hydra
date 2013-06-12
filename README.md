@@ -43,7 +43,7 @@ If you are looking for the previous hydra gem, a distributed testing framework,
 please visit [https://github.com/ngauthier/hydra](https://github.com/ngauthier/hydra).
 If you need to previous hydra gem, you can use `gem ngauthier-hydra`.
 
-# Poject Hydra  
+# Project Hydra  
 This software has been developed by and is brought to you by the Hydra community.  Learn more at the
 [Project Hydra website](http://projecthydra.org)
 
