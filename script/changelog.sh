@@ -55,10 +55,12 @@ function get_range() {
 range=`get_range`
 
 function get_format() {
+  # Subject/author line wraps at 80 characters, no padding
+  local format_subject_author="%w(80,0,0)%s [%cN]%n"
   if [ $verbose = 0 ]; then
-    echo "tformat:%s [%cN]"
+    echo "tformat:$format_subject_author"
   else
-    echo "tformat:%s [%cN]%n%w(72,4,4)%b"
+    echo "tformat:$format_subject_author%n%w(72,4,4)%b"
   fi
 }
 pretty_format=`get_format`
