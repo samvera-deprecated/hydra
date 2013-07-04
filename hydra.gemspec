@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'hydra-head', '~> 6.3.0'
+  gem.add_dependency 'hydra-head', '~> 6.3.1'
   gem.add_dependency 'jettywrapper', '~> 1.4.1'
   gem.add_dependency 'active-fedora', '~> 6.4.0'
   gem.add_dependency 'rails', '>= 3.2.13', '< 5.0'
