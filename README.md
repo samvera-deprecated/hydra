@@ -1,7 +1,7 @@
-# Hydra  
-This gem provides a distibution-like snapshot of all dependencies within the core hydra technology stack.  
+# Hydra
+This gem provides a distibution-like snapshot of all dependencies within the core hydra technology stack.
 
-## Code Status  
+## Code Status
 [![Build Status](https://travis-ci.org/projecthydra/hydra-head.png?branch=master)](https://travis-ci.org/projecthydrahydra/hydra-head)
 [![Dependencies Status](https://gemnasium.com/projecthydra/hydra.png)](https://gemnasium.com/projecthydra/hydra)
 
@@ -30,22 +30,22 @@ And then execute:
 Then run:
 
     $ rails g hydra:install
-    
-## Acknowledgements  
-The initial insights and ideas behind producting a "distro-like" gem to reflect a particular known-good, 
-point-in-time state of the Hydra technology stack resulted from a series of community discussions online, 
+
+## Acknowledgements
+The initial insights and ideas behind producting a "distro-like" gem to reflect a particular known-good,
+point-in-time state of the Hydra technology stack resulted from a series of community discussions online,
 in e-mail, and in person during the period from December 2012 through June 2013.  Huge thanks are owed to
 Jeremy Friesen (Notre Dame), Drew Myers (WGBH), Justin Coyne (Data Curation Experts),
-and Mark Bussey (Data Curation Experts) for activating on these ideas and implementing this gem.  
+and Mark Bussey (Data Curation Experts) for activating on these ideas and implementing this gem.
 
-A giant thank you is also owed to [Nick Gauthier](https://github.com/ngauthier) for offering up the Hydra gem name:
+A giant thank you is also owed to [Nick Gauthier](https://github.com/ngauthier) for offering up the Hydra gem name.
 
-### ngauthier-hydra  
+### ngauthier-hydra
 If you are looking for the previous hydra gem, a distributed testing framework,
 please visit [https://github.com/ngauthier/hydra](https://github.com/ngauthier/hydra).
 If you need to previous hydra gem, you can use `gem ngauthier-hydra`.
 
-# Project Hydra  
+# Project Hydra
 This software has been developed by and is brought to you by the Hydra community.  Learn more at the
 [Project Hydra website](http://projecthydra.org)
 
