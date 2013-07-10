@@ -5,11 +5,13 @@ This gem provides a distibution-like snapshot of all dependencies within the cor
 [![Build Status](https://travis-ci.org/projecthydra/hydra-head.png?branch=master)](https://travis-ci.org/projecthydrahydra/hydra-head)
 [![Dependencies Status](https://gemnasium.com/projecthydra/hydra.png)](https://gemnasium.com/projecthydra/hydra)
 
-## Contributing  
-[Contributing to Project Hydra](CONTRIBUTING.md)
+## For Developers
 
-## Developer Wiki  
-https://github.com/projecthydra/hydra/wiki
+* [Dive Into Hydra Tutorial](/projecthydra/hydra/wiki/Dive-into-Hydra)
+* [Developer Wiki](https://github.com/projecthydra/hydra/wiki)
+
+## Contributing
+* [Contributing to Project Hydra](CONTRIBUTING.md)
 
 ## Installation
 
