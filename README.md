@@ -15,6 +15,10 @@ This gem provides a distibution-like snapshot of all dependencies within the cor
 
 ## Installation
 
+You may want to consider the [Dive Into Hydra Tutorial](/projecthydra/hydra/wiki/Dive-into-Hydra).
+Or perhaps you want a little more self-directed.
+If so:
+
 Add this line to your application's Gemfile:
 
     gem 'hydra', :require => 'hydra6'
