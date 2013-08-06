@@ -2,6 +2,7 @@
 This gem provides a distibution-like snapshot of all dependencies within the core hydra technology stack.
 
 ## Code Status
+[![Gem Version](https://badge.fury.io/rb/hydra.png)](http://badge.fury.io/rb/hydra)
 [![Build Status](https://travis-ci.org/projecthydra/hydra-head.png?branch=master)](https://travis-ci.org/projecthydrahydra/hydra-head)
 [![Dependencies Status](https://gemnasium.com/projecthydra/hydra.png)](https://gemnasium.com/projecthydra/hydra)
 
