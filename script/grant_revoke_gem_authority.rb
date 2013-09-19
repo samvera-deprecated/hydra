@@ -1,3 +1,5 @@
+# To run:
+# $ ruby ./script/grant_revoke_gem_authority.rb
 RUBYGEM_NAMES = [
   'active-fedora',
   'active_fedora-registered_attributes',
@@ -45,18 +47,29 @@ HYDRA_COMMITTER_EMAILS = [
   "ndushay@stanford.edu",
 ]
 
+@errors = []
+
+def system_command_with_error_check(command)
+  if !system(command)
+    @errors << "ERROR FOR: #{command}"
+  end
+end
 RUBYGEM_NAMES.each do |gemname|
   current_committers = `gem owner #{gemname} | grep -e ^-`.split("\n")
   current_committers.collect! { |cc| cc.sub(/^.\s+/,'')}
   committers_to_remove = current_committers - HYDRA_COMMITTER_EMAILS
   committers_to_add = HYDRA_COMMITTER_EMAILS - current_committers
 
-  puts "Gem: #{gemname}\n\tRemove: #{committers_to_remove.inspect}\n\tAdd: #{committers_to_add.inspect}"
   committers_to_remove.each do |email_to_remove|
-    `gem owner #{gemname} -r #{email_to_remove}`
+    system_command_with_error_check("gem owner #{gemname} -r #{email_to_remove}")
   end
 
   committers_to_add.each do |email_to_add|
-    `gem owner #{gemname} -a #{email_to_add}`
+    system_command_with_error_check("gem owner #{gemname} -a #{email_to_add}")
   end
+end
+
+if ! @errors.empty?
+  $stderr.puts("The following errors were encountered:")
+  $stderr.puts(%(#{@errors.join("\n")}))
 end
