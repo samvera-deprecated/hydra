@@ -22,14 +22,15 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'hydra-head', '~> 6.3.1'
+  gem.add_dependency 'hydra-head', '6.4.0.pre1'
   gem.add_dependency 'jettywrapper', '~> 1.4.1'
-  gem.add_dependency 'active-fedora', '~> 6.4.0'
+  gem.add_dependency 'active-fedora', '6.6.0.pre1'
   gem.add_dependency 'rails', '>= 3.2.13', '< 5.0'
   gem.add_dependency 'om', '~> 3.0.1'
   gem.add_dependency 'solrizer', '~> 3.1.0'
   gem.add_dependency 'rsolr', '~> 1.0.9'
-  gem.add_dependency 'blacklight', '~> 4.2.1'
+  # TODO Bl 4.5.0
+  gem.add_dependency 'blacklight', '~> 4.3.0'
   gem.add_dependency 'nokogiri', '~> 1.6.0'
   gem.add_dependency 'rubydora', '~> 1.6.5'
   gem.add_dependency 'nom-xml', '~> 0.5.1'
