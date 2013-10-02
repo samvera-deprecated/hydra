@@ -1,4 +1,3 @@
-puts "REQUIRING HYDRA"
 require "hydra/version"
 require 'hydra-head'
 require 'active-fedora'

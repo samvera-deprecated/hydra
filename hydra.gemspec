@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.license = 'APACHE2'
 
-  gem.add_dependency 'hydra-head', '6.4.0.rc1'
+  gem.add_dependency 'hydra-head', '6.4.0.rc2'
   gem.add_dependency 'jettywrapper', '~> 1.4.1'
   gem.add_dependency 'active-fedora', '6.6.0.rc1'
   gem.add_dependency 'rails', '>= 3.2.13', '< 5.0'

@@ -1,10 +1,2 @@
-require "hydra/version"
-require 'hydra/head'
-require 'active-fedora'
-require 'rails'
-require 'om'
-require 'solrizer'
-require 'rsolr'
-require 'blacklight'
-require 'nokogiri'
-require 'rubydora'
+$stderr.puts "There is no need to have `:require =>\"hydra6\"' in you Gemfile any longer"
+require "hydra"
