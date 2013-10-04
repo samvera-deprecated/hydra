@@ -8,7 +8,7 @@ This gem provides a distibution-like snapshot of all dependencies within the cor
 
 ## For Developers
 
-* [Dive Into Hydra Tutorial](https://github.com/projecthydra/hydra/wiki/Dive-into-Hydra)
+* [Tutorial: Dive Into Hydra](https://github.com/projecthydra/hydra/wiki/Dive-into-Hydra)
 * [Developer Wiki](https://github.com/projecthydra/hydra/wiki)
 
 ## Contributing
