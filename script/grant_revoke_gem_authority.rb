@@ -37,12 +37,12 @@ HYDRA_COMMITTER_EMAILS = [
   "edwin.shin@yourmediashelf.com",
   "jeremy.n.friesen@gmail.com",
   "jessie.keck@gmail.com",
+  "jim.coble@duke.edu",
   "john.scofield@yourmediashelf.com",
   "justin@curationexperts.com",
   "leftwing@alumni.rutgers.edu",
   "matt@curationexperts.com",
   "mbklein@gmail.com",
-  "montyhindman@gmail.com",
   "mstrom81@gmail.com",
   "ndushay@stanford.edu",
 ]
@@ -60,13 +60,11 @@ RUBYGEM_NAMES.each do |gemname|
   committers_to_remove = current_committers - HYDRA_COMMITTER_EMAILS
   committers_to_add = HYDRA_COMMITTER_EMAILS - current_committers
 
-  committers_to_remove.each do |email_to_remove|
-    system_command_with_error_check("gem owner #{gemname} -r #{email_to_remove}")
-  end
+  remove_params = committers_to_remove.map {|email| "-r #{email}"}.join(' ')
+  system_command_with_error_check("gem owner #{gemname} #{remove_params}")
 
-  committers_to_add.each do |email_to_add|
-    system_command_with_error_check("gem owner #{gemname} -a #{email_to_add}")
-  end
+  add_params = committers_to_add.map {|email| "-a #{email}"}.join(' ')
+  system_command_with_error_check("gem owner #{gemname} #{add_params}")
 end
 
 if ! @errors.empty?
