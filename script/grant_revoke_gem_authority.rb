@@ -16,6 +16,7 @@ RUBYGEM_NAMES = [
   'hydra-migrate',
   'hydra-mods',
   'hydra-role-management',
+  'hydra-file_characterization',
   'jettywrapper',
   'om',
   'rubydora',
@@ -54,15 +55,18 @@ def system_command_with_error_check(command)
     @errors << "ERROR FOR: #{command}"
   end
 end
+
 RUBYGEM_NAMES.each do |gemname|
   current_committers = `gem owner #{gemname} | grep -e ^-`.split("\n")
   current_committers.collect! { |cc| cc.sub(/^.\s+/,'')}
-  committers_to_remove = current_committers - HYDRA_COMMITTER_EMAILS
+
+  if ENV.fetch('WITH_REVOKE', false)
+    committers_to_remove = current_committers - HYDRA_COMMITTER_EMAILS
+    remove_params = committers_to_remove.map {|email| "-r #{email}"}.join(' ')
+    system_command_with_error_check("gem owner #{gemname} #{remove_params}")
+  end
+
   committers_to_add = HYDRA_COMMITTER_EMAILS - current_committers
-
-  remove_params = committers_to_remove.map {|email| "-r #{email}"}.join(' ')
-  system_command_with_error_check("gem owner #{gemname} #{remove_params}")
-
   add_params = committers_to_add.map {|email| "-a #{email}"}.join(' ')
   system_command_with_error_check("gem owner #{gemname} #{add_params}")
 end
