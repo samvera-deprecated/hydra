@@ -19,6 +19,7 @@ RUBYGEM_NAMES = [
   'hydra-file_characterization',
   'jettywrapper',
   'om',
+  'qa',
   'rubydora',
   'solrizer',
   'solrizer-fedora',
