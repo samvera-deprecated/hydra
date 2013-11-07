@@ -18,6 +18,7 @@ RUBYGEM_NAMES = [
   'hydra-role-management',
   'hydra-file_characterization',
   'jettywrapper',
+  'curate',
   'om',
   'qa',
   'rubydora',
