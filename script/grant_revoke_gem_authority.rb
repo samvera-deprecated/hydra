@@ -39,7 +39,6 @@ HYDRA_COMMITTER_EMAILS = [
   "jeremy.n.friesen@gmail.com",
   "jessie.keck@gmail.com",
   "jim.coble@duke.edu",
-  "john.scofield@yourmediashelf.com",
   "justin@curationexperts.com",
   "leftwing@alumni.rutgers.edu",
   "matt@curationexperts.com",
