@@ -22,7 +22,7 @@ If so:
 
 Add this line to your application's Gemfile:
 
-    gem 'hydra', :require => 'hydra6'
+    gem 'hydra'
 
 And then execute:
 
