@@ -23,7 +23,7 @@ skip_tag="\[log skip\]"
 repository_path="./"
 
 function default_range() {
-  local latest_version_tag=`cd $repository_path && git tag | grep ^v | sort | tail -1`
+  local latest_version_tag=`cd $repository_path && git describe --abbrev=0 --tags | tail -1`
   # a ".." range tag causes the `git log` command to fail
   if [ -z "$latest_version_tag" ]; then
     echo ''
