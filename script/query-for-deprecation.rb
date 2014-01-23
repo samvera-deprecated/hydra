@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby -KU
 
 # Given that the Hydra gem is pegged against specific versions other gems
 # When we update the Hydra gem and its underlying dependent gems
@@ -10,7 +10,7 @@ require 'fileutils'
 include Open3
 
 PREVIOUS_HYDRA_VERSION = 'v6.0.0'
-NEXT_HYDRA_VERSION = 'v6.1.0.rc1'
+NEXT_HYDRA_VERSION = 'v6.1.0'
 DIFF_SUFFIX = 'diff'
 TEMP_DIRECTORY = File.expand_path("../../tmp/", __FILE__)
 
@@ -21,32 +21,56 @@ class GemChange
     @name, @previous_version, @next_version = name, previous_version, next_version
   end
 
-  def filenames
-    @filenames ||= begin
+  def with_projecthydra_changes
+    url = github_project_url
+    if url && commit_ids.any?
+      yield(url, commit_ids)
+    end
+  end
+
+  def commit_ids
+    @commit_ids ||= begin
       # Assuming that you have all of your git project hydra repos in the same parent directory
-      repository_directory = File.expand_path("../../../#{name}", __FILE__)
-      command = "cd #{repository_directory} && git log -G'Deprecation.warn' v#{previous_version}..v#{next_version} --stat | grep -e '| [0-9]' | cut -f 1,2 -d ' '"
-      stdin, stdout, stderr, wait_thr = popen3(command)
-      begin
-        out = stdout.read
-        err = stderr.read
-        exit_status = wait_thr.value
-        raise "Unable to execute command \"#{command}\"\n#{err}" unless exit_status.success?
-      ensure
-        stdin.close
-        stdout.close
-        stderr.close
-      end
-      if out.strip != ""
-        filenames = out.split("\n").collect(&:strip).uniq
-        filenames.each do |filename|
-          flat_filename = name + '-' + filename.gsub("/", '-')
-          `cd #{repository_directory} && git diff v#{previous_version}..v#{next_version} #{filename} > #{File.join(TEMP_DIRECTORY, flat_filename)}.#{DIFF_SUFFIX}`
-        end
-        filenames
+      command = "cd #{repository_directory} && git log -G'deprecat' -i v#{previous_version}..v#{next_version} --pretty=format:%H"
+      output = execute_command(command)
+      if output.strip != ""
+        output.split("\n").collect(&:strip).uniq
       else
         []
       end
+    end
+  end
+
+  protected
+
+  def github_project_url
+    command = "cd #{repository_directory} && git config --get remote.origin.url"
+    remote_url = execute_command(command).strip
+    if remote_url =~ /projecthydra/
+      remote_url.sub(/\A.*projecthydra\/([\w-]*).*\Z/, 'https://github.com/projecthydra/\1')
+    elsif remote_url =~ /projectblacklight/
+      remote_url.sub(/\A.*projectblacklight\/([\w-]*).*\Z/, 'https://github.com/projectblacklight/\1')
+    else
+      nil
+    end
+  end
+
+  def repository_directory
+    File.expand_path("../../../#{name}", __FILE__)
+  end
+
+  def execute_command(command)
+    stdin, stdout, stderr, wait_thr = popen3(command)
+    begin
+      out = stdout.read
+      err = stderr.read
+      exit_status = wait_thr.value
+      raise "Unable to execute command \"#{command}\"\n#{err}" unless exit_status.success?
+      out
+    ensure
+      stdin.close
+      stdout.close
+      stderr.close
     end
   end
 end
@@ -57,12 +81,17 @@ class Changes < Array
     @previous_version, @next_version = previous_version, next_version
   end
   def print
-    $stdout.puts "Deprecation changes for Hydra #{previous_version}..#{next_version}"
+    $stdout.puts "Deprecation changes for Hydra #{previous_version}..#{next_version}\n\n"
     each do |change|
-      $stdout.puts "\tFiles for #{change.name} v#{change.previous_version}..v#{change.next_version}"
-      $stdout.puts "\t\t" << change.filenames.join("\n\t\t")
-      $stdout.puts "\n"
+      change.with_projecthydra_changes do |github_project_url, commit_ids|
+        $stdout.puts "\tCommits for #{change.name} v#{change.previous_version}..v#{change.next_version}"
+        change.commit_ids.each do |commit_id|
+          $stdout.puts "\t\t" << commit_id << "\t" << File.join(github_project_url, 'commit', commit_id)
+        end
+        $stdout.puts "\n"
+      end
     end
+
     if any?
       $stdout.puts "See tmp/ dir for diff output and review"
     end
@@ -75,8 +104,6 @@ previous_gemspec = File.new(File.expand_path("../../hydra-#{changes.previous_ver
 next_gemspec = File.new(File.expand_path("../../hydra-#{changes.next_version}.gemspec", __FILE__), 'w+')
 
 begin
-
-  system("rm #{File.join(TEMP_DIRECTORY, "*.#{DIFF_SUFFIX}")}")
 
   File.open(previous_gemspec.path, 'w+') do |f|
     f.write `git show #{changes.previous_version}:hydra.gemspec`
