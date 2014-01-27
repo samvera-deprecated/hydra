@@ -105,6 +105,9 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * If you are uncertain, bring other contributors into the conversation by creating a comment that includes their @username.
 * If you like the pull request, but want others to chime in, create a +1 comment and tag a user.
 
+## New Developers
+A great way to get new developers involved and to learn the process is to have them go through the Hierarchy of Promises and create a pull request to improve it.
+
 # Additional Resources
 
 * [General GitHub documentation](http://help.github.com/)
