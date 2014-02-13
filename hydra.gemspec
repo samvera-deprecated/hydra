@@ -32,7 +32,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rsolr', '~> 1.0.9'
   gem.add_dependency 'blacklight', '~> 4.7.0'
   gem.add_dependency 'nokogiri', '~> 1.6.0'
-  gem.add_dependency 'rubydora', '~> 1.7.2'
+  gem.add_dependency 'rubydora', '~> 1.7.1', '!= 1.7.2'
   gem.add_dependency 'nom-xml', '~> 0.5.1'
   gem.add_development_dependency 'github_api', '~> 0.10.1'
 end
