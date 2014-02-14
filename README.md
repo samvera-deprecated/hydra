@@ -1,5 +1,19 @@
 # Hydra
-This gem provides a distibution-like snapshot of all dependencies within the core hydra technology stack.
+This gem provides a distibution-like snapshot of all dependencies within the core Hydra technology stack. The components of the stack are as follows:
+
+* [rubydora](https://github.com/projecthydra/rubydora) - a REST client for Fedora Commons Repository
+* [solrizer](https://github.com/projecthydra/solrizer) - translates indexing directives into Solr field names
+* [om](https://github.com/projecthydra/om) - a library for defining templates for xml metadata formats
+* [nom-xml](https://github.com/cbeer/nom-xml) - an alternative to om
+* [active-fedora](https://github.com/projecthydra/active_fedora) - an ORM for Fedora and Solr
+* [blacklight](https://github.com/projectblacklight/blacklight) - web front end for Solr document discovery (search)
+* [hydra-head](https://github.com/projecthydra/hydra-head) - integration between Blacklight and ActiveFedora. Provides access controls and gated searching.
+* [jettywrapper](https://github.com/projecthydra/jettywrapper) - Utilities for starting up a jetty server with Solr and Fedora useful in development and testing.
+
+Additionally, versions are locked to the following transitive dependencies, as they are critial to the stack:
+* [Nokogiri](http://nokogiri.org/)
+* [Ruby on Rails](http://rubyonrails.org/)
+* [RSolr](https://github.com/rsolr/rsolr)
 
 ## Code Status
 [![Gem Version](https://badge.fury.io/rb/hydra.png)](http://badge.fury.io/rb/hydra)
