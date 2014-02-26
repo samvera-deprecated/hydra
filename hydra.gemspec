@@ -23,16 +23,16 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.license = 'APACHE2'
 
-  gem.add_dependency 'hydra-head', '6.5.0.rc2'
+  gem.add_dependency 'hydra-head', '~> 6.5.0'
   gem.add_dependency 'jettywrapper', '~> 1.5.0'
-  gem.add_dependency 'active-fedora', '~> 6.7.6'
+  gem.add_dependency 'active-fedora', '~> 6.7.7'
   gem.add_dependency 'rails', '>= 3.2.15', '< 5.0'
   gem.add_dependency 'om', '~> 3.0.3'
   gem.add_dependency 'solrizer', '~> 3.1.0'
   gem.add_dependency 'rsolr', '~> 1.0.9'
   gem.add_dependency 'blacklight', '~> 4.7.0'
   gem.add_dependency 'nokogiri', '~> 1.6.0'
-  gem.add_dependency 'rubydora', '~> 1.7.2'
+  gem.add_dependency 'rubydora', '~> 1.7.4'
   gem.add_dependency 'nom-xml', '~> 0.5.1'
   gem.add_development_dependency 'github_api', '~> 0.10.1'
 end
