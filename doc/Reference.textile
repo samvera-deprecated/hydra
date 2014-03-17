@@ -1,0 +1,19 @@
+See the github wikis for information targeted to developers: "http://github.com/projecthydra/hydra-head/wiki":http://github.com/projecthydra/hydra-head/wiki
+See the duraspace hydra wikis for information at the architecture level: "http://github.com/projecthydra/hydra-head/wiki":http://github.com/projecthydra/hydra-head/wiki
+Additionally, new adopters and potential adopters may find the pages here useful: "http://projecthydra.org/":http://projecthydra.org/
+
+Further questions? Ask the hydra-tech list or join the freenode #projecthydra IRC channel.
+
+h2. API Docs
+
+"ActiveFedora API Docs":http://rdoc.info/github/projecthydra/active_fedora
+"OM API Docs":http://rdoc.info/github/projecthydra/om
+"Solrizer-Fedora API Docs":http://rdoc.info/github/projecthydra/solrizer-fedora
+"Solrizer API Docs":http://rdoc.info/github/projecthydra/solrizer
+
+h2. Tutorials
+
+"ActiveFedora Console Tour":https://github.com/projecthydra/active_fedora/wiki/Getting-Started%3A-Console-Tour
+"OM-based NokogiriDatastreams":https://github.com/projecthydra/active_fedora/wiki/Nokogiri-Datastreams
+"Hydra-Head wiki pages":https://github.com/projecthydra/hydra-head/wiki/_pages
+

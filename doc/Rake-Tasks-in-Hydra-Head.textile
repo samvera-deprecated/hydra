@@ -1,0 +1,40 @@
+This guide is known to work with hydra-head _version 6.0.0_.   
+_Please update this wiki to reflect any other versions that have been tested._
+
+h2. Getting info about the rake tasks from the command line
+
+<pre>rake -T</pre>
+
+To narrow down the output, use grep. For example:
+
+<pre>rake -T | grep hy</pre>
+
+
+h2. hydra:jetty Tasks
+
+_Prerequisite:_ You must have the following lines in your Gemfile 
+
+```ruby
+gem 'hydra-head'
+gem 'jettywrapper'
+```
+
+h3. The main tasks: load, start, stop
+
+<pre>
+  rake hydra:jetty:load                 # Copies the default SOLR config files and starts up the fedora instance.
+</pre>
+
+<pre>
+  rake jetty:start                      # Starts the bundled Hydra Testing Server
+  rake jetty:stop                       # Stops the bundled Hydra Testing Server
+</pre>
+
+h3. Subtasks: config, config_fedora, config_solr
+
+<pre>
+  rake hydra:jetty:config               # Copies the default Solr & Fedora configs into the bundled Hydra Testing Server
+  rake hydra:jetty:config_fedora        # Copies a custom fedora config for the bundled Hydra Testing Server
+  rake hydra:jetty:config_solr          # Copies the default SOLR config for the bundled Hydra Testing Server
+</pre>
+  

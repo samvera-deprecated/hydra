@@ -1,0 +1,69 @@
+h1. Tools for Developing and Testing your Application
+
+h2. Hydra-Jetty
+
+The Hydra project provides a copy of Jetty (a java web server) with Fedora and Solr pre-installed.  This is useful for running tests and for running your own code in your sandbox while you're actively working on your hydra head.
+
+The hydra-head gem provides a rake task for installing hydra-jetty
+
+<pre>
+  rails g hydra:jetty
+</pre>
+
+*Important*: To apply your application's solrconfig.xml and schema.xml to the copy of Solr in hydra-jetty, run this:
+
+<pre>
+  rake hydra:jetty:config
+</pre>
+
+Now you're ready to start jetty.  We've written a useful gem that gives you rake tasks for starting and stopping jetty.  Make sure you have jettywrapper in your Gemfile, available for both development and test environments:
+
+<pre>
+group :development, :test do
+  gem "jettywrapper"
+end
+</pre>
+
+If you just added it, then run <pre>bundle install</pre>
+
+Jettywrapper is now installed:
+
+*To start jetty*: <pre>rake jetty:start</pre>
+*To stop jetty*: <pre>rake jetty:stop</pre>
+
+For more information about using jettywrapper, see http://hudson.projecthydra.org/job/jettywrapper/Documentation/
+
+h2.  RSpec and Cucumber for Testing
+
+We STRONGLY recommend that you write tests for every local change you make.  This will allow you to ensure that upgrading the core code doesn't break any local changes you have made.
+
+A common question:  when should it be a cucumber feature rather than a spec?
+very basic rule:  if it's testing something created with view, use a cucumber feature to test.  If it's not created by view code, use a spec to test. 
+
+h4. RSpec for Functional Tests
+
+Most Ruby projects use either RSpec or Shoulda to write and run their Functional Tests.  We use RSpec for all of the Hydra software.
+
+To set up all the files you need to use rspec to test your Rails application, simply run the rspec generator.  This will create a directory called "spec" and put all of the necessary files into it.
+
+<pre>
+    rails g rspec:install
+</pre>
+
+h4. Cucumber to Test User Experience 
+
+If you will be writing cucumber tests, make sure you have the cucumber gem installed (in your test group in your Gemfile, then bundle install).
+
+<pre>
+group :test do 
+  gem 'rspec-rails', '>=2.9.0'
+  gem "cucumber-rails"
+  gem "database_cleaner"
+end
+</pre>
+
+(The database_cleaner gem is used by cucumber-rails when a database is involved.)
+
+Then run the cucumber generator.  This will create a directory called "features" and populate it with all the basic parts you need to run Cucumber tests on your Rails application.
+
+<pre>rails g cucumber:install</pre>
