@@ -1,0 +1,2 @@
+- [[Migrating to Hydra 6.2]]
+- [Migration notes for hydra-head releases](https://github.com/projecthydra/hydra-head/wiki/Migration-notes) (not Hydra gem)

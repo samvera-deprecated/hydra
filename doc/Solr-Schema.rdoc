@@ -1,0 +1,44 @@
+== Dynamic Field Conventions
+The solr schema as found in schema.xml uses a convention with dynamic field names to expose the Solr properties of the field.  The following abbreviations are concatenated into the suffix:
+
+* Solr field type abbreviations
+  * t for text (language independent)
+  * te for English text
+  * s for string
+  * i for integer
+  * dt for date
+  * l for long
+  * db for double
+  * f for float
+  * b for boolean
+  * ll for location (think lat-lon)
+  * trie types are for faster range queries.  The t follows the solr field type abbreviation
+    * it for trie integer
+    * dtt for trie date
+    * lt for trie long
+    * dbt for trie double
+    * ft for trie float
+* Solr field properties abbreviations
+  * s if stored
+  * i if indexed
+  * m if multiValued
+  * v if termVectors (with termPositions and termOffsets also set to true)
+
+Examples:
+
+    <!-- text (_t...) -->
+    <dynamicField name="*_ti" type="text" stored="false" indexed="true" multiValued="false"/>
+    <dynamicField name="*_tim" type="text" stored="false" indexed="true" multiValued="true"/>
+    <dynamicField name="*_ts" type="text" stored="true" indexed="false" multiValued="false"/>
+    <dynamicField name="*_tsm" type="text" stored="true" indexed="false" multiValued="true"/>
+    <dynamicField name="*_tsi" type="text" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_tsim" type="text" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_tiv" type="text" stored="false" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_tsiv" type="text" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_tsimv" type="text" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
+    <!-- string (_s...) -->
+    <dynamicField name="*_si" type="string" stored="false" indexed="true" multiValued="false"/>
+    <dynamicField name="*_sim" type="string" stored="false" indexed="true" multiValued="true"/>
+    ...

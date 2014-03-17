@@ -1,0 +1,198 @@
+h1. Models - Defining a Custom Hydra Model
+
+h2. General Introduction/Tutorial
+
+The "Getting Started Building Your Own Hydra Application":https://github.com/projecthydra/hydra-head/wiki/How-to-Get-Started tutorial includes a detailed section on defining a JournalArticle model.  Read that to get a sense of how to create a working Hydra Model.
+
+h2. Steps to Defining Your Model
+
+These steps assume you have gone through the basic Hydra app setup and are familiar with its general workings.  In order to create a custom model, you'll need to know how to create your OM terminology if you have a specific XML schema you want to use, or work with an existing OM terminology if one of the ones included with Hydra is sufficient.
+
+Additionally, you'll also need to know how to write rspec tests using fixtures, and have a working knowledge of the Fedora object relationship model.  For help with rspec tests, it's best use the code found in Hydra-Head as examples.  You can copy the tests for Hydra's models into your own application and modify them to test your particular model.  For more information about Fedora, see: "Fedora Wiki":https://wiki.duraspace.org/display/FEDORA/Home
+
+Here is a basic overview of the steps involved:
+
+# Pick your xml schema(s)
+# Create "fixtures" in XML for your schema(s)
+# Define or reuse OM terminologies & datastream classes for your XML
+# Write rspec tests for your catastream classes
+# Define the model
+# Write rspec tests for your model 
+# Decide what relationships your model will have & which predicates to use
+# Add relationship methods to your model
+# Define a rightsMetadata datastream for your objects
+# Setup depositor/owner permissions
+# Define additional default permissions if needed
+# Define delegate terms
+
+h2. rightsMetadata and Depositor/Owner Permissions
+
+Two steps are necessary in order to ensure that your controllers will be able to set the correct permissions on your assets.  If you don't follow these steps, users will be able to create objects but won't be able to edit them.
+
+Before reading this, make sure to read the page on "Hydra Access Controls":https://github.com/projecthydra/hydra-head/wiki/Access-Controls
+
+h3. Ensuring objects have a rightsMetadata datastream
+
+If you are adhering to the formal Hydra commonMetadata cModel which says that you must have a descMetadata datastream and a rightsMetadata datastream, you can put this line in your model:
+
+<pre>
+  # This model adheres to the formal Hydra commonMetadata cModel, meaning that it has a descMetadata datastream and a rightsMetadata datastream
+  include Hydra::ModelMixins::CommonMetadata
+</pre>
+
+If you are not adhering to the formal Hydra commonMetadata cModel and simply want to have a rightsMetadata datastream, declare the datastream directly in your Model
+
+<pre>
+  # Explicitly declaring rightsMetadata datastream
+  has_metadata :name => "rightsMetadata", :type => Hydra::RightsMetadata
+</pre>
+
+h3. Using Hydra::ModelMethods
+
+{Hydra::ModelMethods} will provide the {Hydra::ModelMethods#apply_depositor_metadata} method to your models.  This ensures that any controller operating on your models can grant a user edit permissions on the objects he or she creates.  When the user logs into the Hydra application, their login (ie. archivist1@example.com) will be added to the to the rightsMetadata datastream, giving them edit access.  
+
+You might want to override this with a method that including additional tasks more specific to your model.  If you decide to do this, the most important behavior to retain is adding +depositor_id+ to the asset's individual edit permissions if the asset has a rightsMetadata datastream.
+
+To add the method to your model, simply add this code to your model:
+<pre>
+  include Hydra::ModelMethods
+</pre>
+
+h3. Applying other default permissions
+
+Using Hydra's system of access controls, you can give newly created objects a default set of group permissions.  If you are using apply_depositor_metadata correctly, the depositor will have access to the item, but what if you want to grant other people access to the object based on their group membership?
+
+In that case, you can use the after_create hook in your model to run a method that applies some default permissions to your objects when they are created.  Either in the model code itself or in a separate file that you can include later, create a method called apply_default_permissions:
+
+<pre>
+  def apply_default_permissions
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"archivist"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"reviewer"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"donor"=>"read"} )
+    self.save
+  end
+</pre>
+
+This method will grant edit privileges to the archivist and reviewer groups, while anyone in the donor group will have read access.  These groups and their members are defined in the config/role_mapper_*.yml files.  There will be one role mapper file for each of the Rails environments: development, test and production.  For example, if your role_mapper_production.yml file contains:
+
+<pre>
+archivist:
+  - archivist1@example.com
+donor:
+  - donor1@example.com
+reviewer:
+  - reviewer1@example.com
+researcher:
+  - researcher1@example.com
+patron:
+  - patron1@example.com
+</pre>
+
+The archivist1 and reviewer1 users will have edit access to all objects, by default, as well as donor1 who will have read access to all objects.  The patron1 user will not have any access unless it specifically granted via the Hydra web application.
+
+h3. Defining delegate terms
+
+The last step in creating your model will be to define delegate terms to each of the fields you want to use in your model.  Delegate terms allow your views and controllers to interact directly with the terms you've defined in OM.  You will need to have a delegate defined for every term you want to use in a view.  If you have terms in your OM definition that are not needed at the view level, then you won't need to create delegates for them; however, it is advisable to create delegates for any OM term that needs to be displayed or edited in any way.
+
+h2. Putting it all together
+
+Using these above examples and expanding upon the JournalArticle model that is used in the "content type example":https://github.com/projecthydra/hydra-head/wiki/Content-Type-Example:-Journal-Article, we can construct a more advanced Hydra model:
+
+<pre>
+class JournalArticle < ActiveFedora::Base
+  include Hydra::ModelMethods
+  include Hydra::ModelMixins::CommonMetadata
+  include ActiveFedora::Relationships
+
+  has_relationship "objects", :is_part_of, :inbound => true
+
+  after_create :apply_default_permissions
+  
+  has_metadata :name => "descMetadata",   :type => JournalArticleModsDatastream
+  has_metadata :name => "properties",     :type => MyApp::MyProperties
+
+  delegate :title,            :to=> :descMetadata, :unique=>"true"
+  delegate :abstract,         :to=> :descMetadata, :unique=>"true"
+  delegate :start_page,       :to=> :descMetadata
+  delegate :end_page,         :to=> :descMetadata
+  delegate :publication_date, :to=> :descMetadata
+  delegate :journal_title,    :to=> :descMetadata
+  delegate :journal_volume,   :to=> :descMetadata
+  delegate :journal_issue,    :to=> :descMetadata
+  delegate :depositor,        :to=> :properties
+
+  def apply_depositor_metadata(depositor_id)
+    self.depositor = depositor_id
+    super
+  end
+  
+  def apply_default_permissions
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"archivist"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"reviewer"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"donor"=>"read"} )
+    self.save
+  end
+
+end
+</pre>
+
+h3. Explanation
+
+The first three include statements add in some basic features to our model.  Hydra::ModelMethods gives us the apply_depositor_metadata method and Hydra::ModelMixins::CommonMetadata gives us the rightsMetadata dastastream.  Remember that since we've included the mixin here, we don't need to define the datastream like we do the others.  The last include statement adds in ActiveFedora::Relationships which allows us to assert relationships with other objects.  This would be useful in a scenario where we have a JournalPage model defined and each journal page needs to claim it's parent object as a JournalArticle.  ActiveFedora lets us do this using the RELS-EXT datastream in Fedora.  Note that there is no JournalPage model defined anywhere.  If you want a model to assert a relationship to JournalArticle, then you're going to have to create it.  Once you have that model defined, then you can add the next line, has_relationship, which defines an inbound relationship where objects can assert a relationship to our JournalArtical model.
+
+The line after this uses our custom apply_default_permissions method.  Note that this is completely optional and not required in order for your Hydra models to work.  It's just an example of how you can use Rails hooks to add extra functionality to your models.  The apply_default_permissions method is defined at the bottom of the model.
+
+Next we define our datastreams.  We're using two, the JournalArticleModsDatastream that is defined in the "Content-Type-Example:-Journal-Article" example, and a second sample datastream that we're calling MyApp::MyProperties.  This assumes we have created an OM definition for this datastream.  We could use it here to store additional information about the object that does not belong in descMetadata.
+
+Following our datastreams is a section with our delegate definitions.  These map terms from each of our OM terminologies to fields in our model that will eventually translated to fields that we can interact with our views.  As you can see, there is a delegate for each term in descMetadata, which uses our JournalArticleModsDatastream, and one additional delegate for a term called "depositor" which is mapped to our properties datastream using the sample MyApp::MyProperties terminology.
+
+Finally, there are two methods.  The first, apply_depositor_metadata, overrides the method found in Hydra::ModelMethods with one additional step.  In this case, we're going to store the depositor_id in our properties datastream for later use.  After that, we want everything to proceed as normal and call "super" so that the rest of the method executes as it should according to Hydra's use.
+
+The last method is called using the after_create hook which applies some default permissions to our objects.
+
+h2. DRY it up
+
+One last little tweak.  If we wanted to share our custom methods with some of our other yet-to-be-define models, we could break out these methods to a separate file:
+
+<pre>
+module MyApp::MyModelMethods
+
+  def apply_depositor_metadata(depositor_id)
+    self.depositor = depositor_id
+    super
+  end
+  
+  def apply_default_permissions
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"archivist"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"reviewer"=>"edit"} )
+    self.datastreams["rightsMetadata"].update_permissions( "group"=>{"donor"=>"read"} )
+    self.save
+  end
+
+end
+</pre>
+
+We then remove the method definitions from our model and our include statement then look like:
+
+<pre>
+  include Hydra::ModelMethods
+  include Hydra::ModelMixins::CommonMetadata
+  include ActiveFedora::Relationships
+  include MyApp::MyModelMethods
+</pre>
+
+We now have a module of code that can be included with our other custom models at will, just like we may include additional Hydra functions by adding additional include statements.
+
+h2. Other Topics
+
+h3. OM
+* namespaces
+* Indexing
+** index_as
+** suppressing fields
+** advanced indexing with custom solr schemas (:displayable and :searchable)
+* retrieving Terms & Values
+
+h2. More Information
+
+Further questions?  Ask the "hydra-tech list":http://groups.google.com/group/hydra-tech or join the freenode #projecthydra IRC channel.

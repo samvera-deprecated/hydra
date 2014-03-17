@@ -1,0 +1,357 @@
+h1. YOUR Hydra Application - Initial Modifications
+
+This document explains how to make two basic changes to your hydra rails application and how to write the appropriate tests for them.
+
+h2. What you will learn from this document:
+
+# How to Change the Home Page Text for Your Hydra Application
+# How to Change the Rails Application Name of Your Hydra Application
+# How to Change the Facets displayed for Limiting your Search
+# How to Override a Helper Method
+# How to Write a Simple Spec (an RSpec test)
+# How to Write a Simple Cucumber Feature
+
+Terminology note:  the Hydra and Blacklight gems are engines plugins for Rails applications. 
+
+h4. The Vanilla, Freshly Created Hydra Application
+
+By following the instructions of the "README":https://github.com/projecthydra/hydra-head/blob/master/README.textile, "Getting Started":https://github.com/projecthydra/hydra-head/wiki/How-to-Get-Started and so on, you should have gotten to a running rails application, with the default rails home page.
+
+h2. Making local changes to your Hydra Application
+
+In order to make it easy to get any new functionality added to the hydra stack (see "README":http://hudson.projecthydra.org/job/hydra-head-rails3-plugin/Documentation/file.README.html), while retaining your Hydra application's localizations, your local hydra application code should be set up to override the upstream Hydra stack code. 
+
+Luckily, rails engines has made this easy - the Hydra code is organized so your localizations are kept separate from the core hydra application code.
+
+Moreover, to ensure your localizations won't be broken by upgrading the Hydra core code, you should have tests for all your localizations.
+
+The two key points:
+
+<b>
+# always write tests for your local modifications
+# always change code at the app level, and never change anything in vendor/plugins.
+</b>
+
+h3. Easy Changes for Practice.
+
+h2. Changing the Home Text (also demonstrates Writing a Feature and Overriding a View)
+
+The home text is set in a view partial, so a cucumber feature is the most appropriate test (rather than an rspec test).
+
+h4. (1) Write the test.
+
+Create a file "features/home_page.feature" containing this:
+
+<pre>
+  Feature: Homepage
+    I want the home page to reflect localizations properly
+</pre>
+
+A test for checking the home text might be inserted like so:
+
+<pre>
+  Feature: Homepage
+    I want the home page to reflect localizations properly
+    
+    Scenario: home page text
+      When I am on the home page
+      Then I should not see "override"
+      And I should see "My Local Hydra App"
+</pre>
+
+h4. (2) Run the test - it should fail
+
+When you run this feature, the feature should run, but this test should fail (because you haven't changed anything yet.)
+
+Mine looked like this:
+
+<pre>
+$ rake cucumber:ok
+SOLRIZER: loading field name mappings from hydra-app/config/solr_mappings.yml
+resetting mappings for Solrizer::FieldMapper::Default
+/home/.rvm/rubies/ruby-1.9.3-p0/bin/ruby -S bundle exec cucumber  --profile default
+Using the default profile...
+Feature: Home page
+  I want the home page to reflect localizations properly
+
+  Scenario: home page text           # features/home_page.feature:4
+    When I am on the home page       # features/home_page.feature:5
+      Undefined step: "I am on the home page" (Cucumber::Undefined)
+      features/home_page.feature:5:in `When I am on the home page'
+    Then I should not see "override" # features/home_page.feature:6
+      Undefined step: "I should not see "override"" (Cucumber::Undefined)
+      features/home_page.feature:6:in `Then I should not see "override"'
+    And I should see "My Local Hydra App"        # features/home_page.feature:7
+      Undefined step: "I should see "My Local Hydra App"" (Cucumber::Undefined)
+      features/home_page.feature:7:in `And I should see "My Local Hydra App"'
+
+1 scenario (1 undefined)
+3 steps (3 undefined)
+0m0.003s
+
+You can implement step definitions for undefined steps with these snippets:
+
+When /^I am on the home page$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should not see "([^"]*)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see "([^"]*)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+rake aborted!
+Command failed with status (1): [/home/.rvm/rubies/ruby-1.9.3-p0/b...]
+
+Tasks: TOP => cucumber:ok
+(See full trace by running task with --trace)
+</pre>
+
+If steps show as pending, you will need to define them.  If you are new to rails3, you might want to look at "http://aslakhellesoy.com/post/11055981222/the-training-wheels-came-off":http://aslakhellesoy.com/post/11055981222/the-training-wheels-came-off and/or "http://net.tutsplus.com/tutorials/ruby/ruby-for-newbies-testing-web-apps-with-capybara-and-cucumber/":http://net.tutsplus.com/tutorials/ruby/ruby-for-newbies-testing-web-apps-with-capybara-and-cucumber/
+
+Cucumber will load any files in the folder “features/step_definitions” for steps, so let’s create “my_steps.rb” file and add these steps:
+
+<pre>
+Given /^I am on the home page$/ do
+  visit "/"
+end
+ 
+Then /^I should not see "([^"]*)"$/ do |text|
+  page.should_not have_content text
+end
+
+Then /^I should see "([^"]*)"$/ do |text|
+  page.should have_content text
+end
+</pre>
+
+Now I get the following appropriate failure (as I still haven't changed any code):
+
+<pre>
+$ rake cucumber ok
+SOLRIZER: loading field name mappings from /hydra-app/config/solr_mappings.yml
+resetting mappings for Solrizer::FieldMapper::Default
+/home/.rvm/rubies/ruby-1.9.3-p0/bin/ruby -S bundle exec cucumber  --profile default
+Using the default profile...
+Feature: Home page
+  I want the home page to reflect localizations properly
+
+  Scenario: home page text           # features/home_page.feature:4
+    When I am on the home page       # features/step_definitions/basic_steps.rb:2
+    Then I should not see "override" # features/step_definitions/basic_steps.rb:6
+    And I should see "My Local Hydra App" # features/step_definitions/basic_steps.rb:10
+      expected there to be content "My Local Hydra App" in "Ruby on Rails: Welcome aboard\n      <snip>  " (RSpec::Expectations::ExpectationNotMetError)
+      ./features/step_definitions/basic_steps.rb:11:in `/^I should see "([^"]*)"$/'
+      features/home_page.feature:7:in `And I should see "My Local Hydra App"'
+
+Failing Scenarios:
+cucumber features/home_page.feature:4 # Scenario: home page text
+
+1 scenario (1 failed)
+3 steps (1 failed, 2 passed)
+0m0.199s
+rake aborted!
+</pre>
+
+h4. (3) Change the code
+
+We want to override the text on the home page locally, keeping our local changes separate from upstream changes to the plugins' code.
+
+The out-of-the-box default rails home page tells us what to do: 
+
+<pre>
+"Set up a default route and remove public/index.html
+</pre>
+
+We can tell from our app's config/routes.rb file that we already have a default route:
+
+<pre>
+MyHydraApp::Application.routes.draw do
+  Blacklight.add_routes(self)
+  HydraHead.add_routes(self)
+
+  root :to => "catalog#index"
+
+  devise_for :users
+</pre> 
+
+Remove public/index.html from our app ... and we now see the default Blacklight home page.  The text of the Blacklight home page informs us that we need to create 
+
+app/views/catalog/_home_text.html.erb
+
+to override the text in the home page.  So create that page, 
+Since the home text is set in @vendor/plugins/hydra-head/app/views/catalog/_home_text.html.erb@, we will override that code by creating a local @app/views/catalog/_home_text.html.erb@ file.  
+
+Our app/views/catalog/_home_text.html.erb might look like this
+
+<pre>
+<div class="home_text">
+  <h1>Welcome to My Local Hydra App</h1>
+</div>
+</pre>
+
+h4. (4) Run the test - it should now pass
+
+Now when you run the feature, it should pass.  If it doesn't, iterate until it does.
+
+<pre>
+$ rake cucumber:ok
+Using the default profile...
+Feature: Home page
+  I want the home page to reflect localizations properly
+
+  Scenario: home page text           # features/home_page.feature:4
+    When I am on the home page       # features/step_definitions/basic_steps.rb:2
+    Then I should not see "override" # features/step_definitions/basic_steps.rb:6
+    And I should see "My Local Hydra App" # features/step_definitions/basic_steps.rb:10
+
+1 scenario (1 passed)
+3 steps (3 passed)
+</pre>
+
+
+h2. Changing Application Title (also demonstrates Writing a Spec and Overriding a Helper Method)
+
+We want to change the application name (what displays as the html page's title).  This is set in a plugin's app/helper/application_helper.rb file.  Because it is set in a helper file, it is a good candidate for an rspec test (rather than a feature).
+
+h4. (1) Write the test.
+
+Since the application name is set in (vendor/plugins/hydra-head/)app/helpers/application_helper.rb, we need a spec to run against the application_helper file.
+
+Create a file "spec/helpers/application_helper_spec.rb".  A test for checking the application name might be inserted like so:
+
+<pre>
+  require File.expand_path('../../spec_helper', __FILE__)
+
+  describe ApplicationHelper do
+    include ApplicationHelper
+
+    context "overall UI methods" do
+      it "should get the local application name" do
+        application_name.should == "My Hydra"
+      end
+    end
+
+  end
+</pre>
+
+h4. (2) Run the test - it should fail
+
+When you run this spec, the spec should run, but this test should fail (because you haven't changed anything yet.)  Your output might look like this:
+
+<pre>
+$ rspec spec/helpers/application_helper_spec.rb 
+F
+
+Failures:
+
+  1) ApplicationHelper overall UI methods should get the local application name
+     Failure/Error: application_name.should == "My Hydra"
+     NameError:
+       undefined local variable or method `application_name' for #<RSpec::Core::ExampleGroup::Nested_1::Nested_1:0x007fe26887c6c8>
+     # ./spec/helpers/application_helper_spec.rb:9:in `block (3 levels) in <top (required)>'
+
+Finished in 0.02426 seconds
+1 example, 1 failure
+
+Failed examples:
+
+rspec ./spec/helpers/application_helper_spec.rb:8 # ApplicationHelper overall UI methods should get the local application name
+</pre>
+
+h4. (3) Change the code
+
+We want to override the application name locally, keeping our local changes separate from upstream changes to the plugins' code.
+
+Since the application name is set in vendor/plugins/hydra-head/app/helpers/application_helper.rb, we will override that code by putting a method of the same name in app/helpers/application_helper.rb.  The current app/helpers/application_helper.rb file may look like this:
+
+<pre>
+  # Methods added to this helper will be available to all templates in the application.
+  module ApplicationHelper
+  end
+</pre>
+
+Code for changing the application name might be inserted like so:
+
+<pre>
+  # Methods added to this helper will be available to all templates in the application.
+  module ApplicationHelper
+
+    def application_name
+      'My Hydra'
+    end
+
+  end
+</pre>
+
+h4. (4) Run the test - it should now pass
+
+Now when you run the spec, it should pass.  If it doesn't, iterate until it does.
+
+<pre>
+$ rspec spec/helpers/application_helper_spec.rb 
+.
+
+Finished in 0.00438 seconds
+1 example, 0 failures
+</pre>
+
+h2. Changing the Facets
+
+h4. (1) Write the test.
+
+Write the cucumber tests for the facets you want
+
+Create a file in your features directory called homepage_facets.feature and put the following feature description in it.  Note that this cucumber test is assuming you have imported the Hydra sample/fixture objects. To import sample/fixture objects follow the "Import some Sample Content" instructions in "Out of the Box Tour":https://github.com/projecthydra/hydra-head/wiki/Out-of-the-Box-Tour.
+
+<pre>
+  Feature: Homepage Facets
+  I want the home page to include the facets I chose
+
+  Scenario: home page facets
+    When I am on the home page
+    Then I should see "Fedora Model"
+    And I should see "info:fedora/afmodel:ModsAsset"
+    Then I should see "Topic"
+    Then I should see "Journal"
+    And I should see "The Journal of Mock Object"
+    And I should see "Pediatric Nursing"
+    Then I should see "Conference"
+    And I should see "some conference Host"
+</pre>
+
+h4. (2) Run the test - it should fail
+
+Now run the test and watch it fail
+
+<pre>
+  cucumber features
+</pre> 
+
+h4. (3) Change the code
+
+Modify app/controllers/catalog_controller.rb to use the facets you want.
+
+find the section that begins "config.add_facet_field" (around line 42) and replace it with this:
+
+<pre>
+    config.add_facet_field 'has_model_s', :label => 'Fedora Model' 
+    config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
+    config.add_facet_field 'journal_title_info_main_title_facet', :label => 'Journal', :limit => true 
+    config.add_facet_field 'conference_facet', :label => 'Conference', :limit=>true 
+</pre>
+
+h4. (4) Run the test - it should now pass
+
+Now run the test and watch it pass!
+
+<pre>
+  cucumber features
+</pre>
+
+To see the changes for yourself, restart the application.
+
+
