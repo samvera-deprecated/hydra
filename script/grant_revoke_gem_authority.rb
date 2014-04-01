@@ -4,6 +4,7 @@ RUBYGEM_NAMES = [
   'active-fedora',
   'active_fedora-registered_attributes',
   'active_fedora_relsint',
+  'browse-everything',
   'fcrepo_admin',
   'hydra',
   'hydra-access-controls',
