@@ -9,6 +9,7 @@ RUBYGEM_NAMES = [
   'hydra',
   'hydra-access-controls',
   'hydra-batch-edit',
+  'hydra-collections',
   'hydra-core',
   'hydra-derivatives',
   'hydra-editor',
