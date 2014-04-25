@@ -1,4 +1,4 @@
-This lesson is known to work with hydra release version 6.1.0.   
+This lesson is known to work with hydra release version 6.1.0, 6.2.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -34,7 +34,7 @@ hydra-jetty has a fair amount of stuff in it, so it may take up to a minute to s
 
 If Fedora, Solr, or jetty itself are not starting, you'll want to look at the jettywrapper log to diagnose.
 
-**Windows Tip:* This rake task is not currently working on Windows (see [jettywrapper issue #13](https://github.com/projecthydra/jettywrapper/issues/13) for status).  In the meantime, start jetty manually
+**Windows Tip:** This rake task is not currently working on Windows (see [jettywrapper issue #13](https://github.com/projecthydra/jettywrapper/issues/13) for status).  In the meantime, start jetty manually
 ```
 cd jetty
 java -Djetty.port=8983 -Dsolr.solr.home=/Users/justin/hydra-demo/jetty/solr -Xmx256m -XX:MaxPermSize=128m -jar start.jar

@@ -1,6 +1,3 @@
-This lesson is known to work with hydra (gem) version 6.1.0.   
-_Please update this wiki to reflect any other versions that have been tested._
-
 Note: This lesson is basically equivalent to the [Create A New Git Repo](http://curriculum.railsbridge.org/curriculum/create_a_new_git_repo) step in the RailsBridge Curriculum.
 
 # Goals

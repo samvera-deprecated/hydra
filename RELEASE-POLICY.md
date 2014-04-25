@@ -46,14 +46,14 @@ repositories, so you can treat them like any other.
 1. Copy the wiki pages to `docs/` directory of `hydra` project.
 
 	```
-	cp -a path/to/hydra.wiki/* path/to/hydra/docs/
+	cp -a path/to/hydra.wiki/* path/to/hydra/doc/
 	```
 
 1. Commit the changes.
 
 	```
 	cd path/to/hydra
-	git add docs/.
+	git add doc/.
 	git commit -m "Updates the wiki docs"
 	```
 
@@ -61,4 +61,3 @@ This commit should then be included as part of the pull request for the new
 release. See ["Making Changes"](/CONTRIBUTING.md#making-changes) and
 ["Submitting Changes"](/CONTRIBUTING.md#submitting-changes) on the preferred
 way to submit pull requests.
-properly.

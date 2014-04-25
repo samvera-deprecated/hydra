@@ -1,0 +1,1 @@
+[[Use HTTP POST for Solr requests]] - This may be necessary if Hydra's Solr requests, due to access control conditions, become too long for the default HTTP GET method.

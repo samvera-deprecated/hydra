@@ -1,4 +1,4 @@
-This lesson is known to work with hydra release version 6.1.0.   
+This lesson is known to work with hydra release version 6.1.0, 6.2.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -31,7 +31,7 @@ This can be very slow (over 100Mb of download).  When it's done you'll see the d
 #	jetty/
 ```
 
-**Windows Tip**:  Currently this rake task doesn't work on Windows (see [jettywrapper issue #14](https://github.com/projecthydra/jettywrapper/issues/14) for status).  Workaround: Download https://github.com/projecthydra/hydra-jetty/archive/new-solr-schema.zip, unpack it, and move the unpacked 'jetty' directory to the root of your application.
+**Windows Tip**:  Currently this rake task doesn't work on Windows (see [jettywrapper issue #14](https://github.com/projecthydra/jettywrapper/issues/14) for status).  Workaround: Download https://github.com/projecthydra/hydra-jetty/archive/v7.0.0.zip, unpack it, and move the unpacked 'jetty' directory to the root of your application.
 
 ### Step 2: Make git ignore the jetty directory
 
