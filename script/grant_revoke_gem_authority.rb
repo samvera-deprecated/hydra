@@ -46,6 +46,7 @@ HYDRA_COMMITTER_EMAILS = [
   "jpstroop@gmail.com",
   "justin@curationexperts.com",
   "leftwing@alumni.rutgers.edu",
+  "mark@curationexperts.com",
   "matt@curationexperts.com",
   "mbklein@gmail.com",
   "mstrom81@gmail.com",
