@@ -1,6 +1,3 @@
-This lesson is known to work with hydra (gem) version 6.1.0.   
-_Please update this wiki to reflect any other versions that have been tested._
-
 # Goals
 * Create your new Ruby on Rails Application
 

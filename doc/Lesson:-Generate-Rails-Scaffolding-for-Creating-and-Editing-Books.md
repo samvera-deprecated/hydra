@@ -1,4 +1,4 @@
-This Tutorial is known to work with hydra version 6.1.0.  
+This Tutorial is known to work with hydra version 6.1.0, 6.2.0.  
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -24,7 +24,7 @@ Tell the generator to build scaffolding for the Book model and make it assume bo
 rails generate scaffold Book title:string author:string
 ```
 
-When it asks you whether to overwrite `app/models/book.rb`, enter `n` and hit enter.  
+When it asks you whether to overwrite `app/models/book.rb`, enter `n` and hit enter. 
 
 Depending on the specific version of rails you are running the generator creates a few things that we don't want in the `test` and `db` directories.  Delete them with the `git clean` command.
 
@@ -40,22 +40,37 @@ Removing test/unit/book_test.rb
 Removing test/unit/helpers/
 ```
 
-### Step 2: Commit your work
+### Step 2: Run the server & Explore
+
+Run the `rails server` and visit [[http://localhost:3000/books]]
+
+If you see 'uninitialized constant Book::BookMetadata' you'll need to edit `app/models/datastreams/book_metadata.rb`
+
+Replace the first line BookMetadata with Datastreams::BookMetadata:
+
+```ruby
+class Datastreams::BookMetadata < ActiveFedora::OmDatastream
+```
+
+You will also need to edit `app/models/book.rb`
+
+Again, replace BookMetadata with Datastreams::BookMetadata:
+
+```ruby
+  has_metadata 'descMetadata', type: Datastreams::BookMetadata
+```
+Explore the pages for creating, editing and showing Books.  
+
+### Step 3: Commit your work
 
 ```text
 git add .
 git commit -m "Ran scaffold generator"
 ```
 
-### Step 3: Run the server & Explore
-
-Run the `rails server` and visit [[http://localhost:3000/books]]
-
-Explore the pages for creating, editing and showing Books.  
-
 ### Step 4: Make the Display view show Authors as a multi-valued field
 
-Open `app/models/book.rb` and edit the unique setting to be 'false':
+Open `app/models/book.rb` and edit the multiple setting to be 'true':
 
 ```ruby
    has_attributes :author, datastream: 'descMetadata', multiple: true

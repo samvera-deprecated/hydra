@@ -12,7 +12,7 @@ The tutorial also mentions using [Ruby Version Manager](http://rvm.io), a.k.a RV
 # System Requirements
 Your system should have the following installed before beginning the walkthrough
 + [ruby](http://www.ruby-lang.org/en/) 1.9.3 or 2.0.0
-+ [rails](http://rubyonrails.org/)  ~>3.2.13 or ~>4.0.0
++ [rails](http://rubyonrails.org/)  ~>3.2.15 or ~>4.0.0
 + [git](http://git-scm.com/)
 + [java](http://www.java.com/en/) runtime >= 6.0 
 

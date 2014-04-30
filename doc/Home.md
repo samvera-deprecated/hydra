@@ -24,7 +24,7 @@ This wiki is targeted towards developers who are implementing Hydra Heads. The [
 - [[Configuring Solr and Fedora]]
 - [Deployment Hardware](https://wiki.duraspace.org/display/hydra/Deployment+Hardware+Information)
 - [[Migration Notes]]
-
+- [[Hydra Recipes]] - short how-to articles
 
 ### Reference for Hydra Contributors/Committers
 

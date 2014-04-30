@@ -1,4 +1,4 @@
-This lesson is known to work with hydra version 6.1.0.   
+This lesson is known to work with hydra version 6.1.0, 6.2.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals

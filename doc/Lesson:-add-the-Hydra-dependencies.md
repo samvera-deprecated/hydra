@@ -1,4 +1,4 @@
-This lesson is known to work with hydra (gem) version 6.1.0.   
+This lesson is known to work with hydra (gem) version 6.1.0, 6.2.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -14,7 +14,7 @@ In order to take advantage of the Hydra code and features in your application, y
 Open up ```Gemfile``` in your editor.   We're going to add the following lines:
 
 ```ruby
-gem 'hydra', require: 'hydra6'
+gem 'hydra'
 ```
 
 This declares our application to have a dependency on the hydra6 release version of the hydra-gem and ensures that the hydra-head gem gets included (required) correctly. This includes a dependency for the jettywrapper gem (installed automatically). The jettywrapper gem is used to install and configure a preconfigured instance of jetty that loads and runs local development instances of Fedora and Solr for you to run and test your application against.

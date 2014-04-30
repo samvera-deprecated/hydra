@@ -1,4 +1,4 @@
-This lesson is known to work with hydra version 6.1.0.   
+This lesson is known to work with hydra version 6.2.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -16,15 +16,15 @@ The syntax for declaring relationships between ActiveFedora models is the same s
 
 Next we're going to add a Page model.  We'll start by creating another simple metadata datastream.  This time open ```app/models/datastreams/page_metadata.rb``` and add this content:
 ```ruby
-class PageMetadata < ActiveFedora::OmDatastream
-
+class Datastreams::PageMetadata < ActiveFedora::OmDatastream
+ 
   set_terminology do |t|
     t.root(path: "fields")
     t.number index_as: :stored_searchable, type: :integer
     t.text index_as: :stored_searchable
-
+ 
   end
-
+ 
   def self.xml_template
     Nokogiri::XML.parse("<fields/>")
   end
@@ -38,13 +38,13 @@ Then we'll build a Page model that uses the datastream. Open ```app/models/page.
 
 ```ruby
 class Page < ActiveFedora::Base
-  has_metadata 'descMetadata', type: PageMetadata
-
+  has_metadata 'descMetadata', type: Datastreams::PageMetadata
+ 
   belongs_to :book, :property=> :is_part_of
-
+ 
   has_attributes :number, datastream: 'descMetadata', multiple: false
   has_attributes :text, datastream: 'descMetadata', multiple: false
-  
+
 end
 ```
 

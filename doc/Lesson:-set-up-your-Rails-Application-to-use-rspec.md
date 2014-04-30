@@ -1,4 +1,4 @@
-This Tutorial is known to work with hydra version 6.1.0.  
+This Tutorial is known to work with hydra version 6.1.0, 6.2.0.  
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Goals
@@ -34,7 +34,7 @@ rails generate rspec:install
 
 ```text
 git add .
-git commit -m"added rspec"
+git commit -m "added rspec"
 ```
 
 # Next Steps
