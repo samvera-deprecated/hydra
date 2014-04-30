@@ -17,7 +17,6 @@ Additionally, versions are locked to the following transitive dependencies, as t
 
 ## Code Status
 [![Gem Version](https://badge.fury.io/rb/hydra.png)](http://badge.fury.io/rb/hydra)
-[![Build Status](https://travis-ci.org/projecthydra/hydra-head.png?branch=master)](https://travis-ci.org/projecthydrahydra/hydra-head)
 
 ## For Developers
 
