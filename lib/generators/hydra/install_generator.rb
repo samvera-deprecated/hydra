@@ -5,7 +5,7 @@ module Hydra
     desc 'Generate a new hydra project'
 
     def run_other_generators
-      generate("blacklight --devise")
+      generate("blacklight:install --devise")
       generate('hydra:head -f')
       rake('db:migrate')
     end
