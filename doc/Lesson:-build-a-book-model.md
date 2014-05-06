@@ -1,6 +1,3 @@
-This lesson is known to work with hydra release version 6.1.0, 6.2.0.   
-_Please update this wiki to reflect any other versions that have been tested._
-
 # Goals
 * Define a simple OM (Opinionated Metadata) Terminology for Book Metadata that we will track as XML Datastreams
 * Start the Rails console and run code interactively in the console
@@ -44,6 +41,12 @@ class BookMetadata < ActiveFedora::OmDatastream
   def self.xml_template
     Nokogiri::XML.parse("<fields/>")
   end
+
+  def prefix
+    # set a datastream prefix if you need to namespace terms that might occur in multiple data streams 
+    ""
+  end
+
 end
 ```
 
@@ -216,7 +219,7 @@ Check and see that to_solr includes the title and author fields.
 
 ```text
 b.descMetadata.to_solr
- => {"title_tesim"=>["Anna Karenina"], "author_tesim"=>["Tolstoy, Leo"]}
+ => {"title_tesim"=>["Anna Karenina"], "author_tesim"=>["Tolstoy, Leo"]} 
 ```
 Now when you call `.to_solr` on a BookMetadata datastream it returns a solr document with fields named `title_tesim` and `author_tesim` that contain your title and author values.  Those are the field names that we will add to Blacklight's queries in [[Lesson: Make Blacklight Return Search Results]].
 
@@ -234,14 +237,14 @@ If you refresh the document result from solr ([[http://localhost:8983/solr/selec
 
 ```xml
 <arr name="title_tesim">
-  <str>Anna Karenina</str>
+    <str>Anna Karenina</str>
 </arr>
 <arr name="author_tesim">
-  <str>Tolstoy, Leo</str>
+    <str>Tolstoy, Leo</str>
 </arr>
 ```
 
-**Aside:** The strange suffixes on the field names are provided by [solrizer](http://github.com/projecthydra/solrizer). You can read about them in the solrizer documentaton. In short, the **_tesim** suffix tells Solr to treat the values as _**t**ext_ in the _**e**nglish_ language that should be _**s**tored_, _**i**ndexed_ and allowed to be _**m**ultivalued_. This _tesim suffix is a useful catch-all that gets your searches working predictably with minimal fuss. As you encounter cases where you need to index your content in more nuanced ways, there are ways to change these suffixes in order to achieve different results in Solr.
+**Aside:** The strange suffixes on the field names are provided by [solrizer](http://github.com/projecthydra/solrizer). You can read about them in the [solrizer documentaton](https://github.com/projecthydra/hydra-head/wiki/Solr-Schema). In short, the **_tesim** suffix tells Solr to treat the values as _**t**ext_ in the _**e**nglish_ language that should be _**s**tored_, _**i**ndexed_ and allowed to be _**m**ultivalued_. This _tesim suffix is a useful catch-all that gets your searches working predictably with minimal fuss. As you encounter cases where you need to index your content in more nuanced ways, there are ways to change these suffixes in order to achieve different results in Solr.
 
 #### Why doesn't the Book show up in Blacklight?
 
@@ -257,6 +260,6 @@ $> git commit -m "Created a book model and a datastream"
 ```
 
 # Next Step
-Go on to [[Lesson: Turn Off Access Controls]] or return to the [[Dive into Hydra]] page.
+Go on to [[Lesson: Make Blacklight Return Search Results]] or return to the [[Dive into Hydra]] page.
 
 If you want to learn about OM Terminologies and how they work, visit the [Tame your XML with OM](https://github.com/projecthydra/om/wiki/Tame-your-XML-with-OM) Tutorial.

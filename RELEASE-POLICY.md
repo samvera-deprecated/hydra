@@ -43,7 +43,7 @@ repositories, so you can treat them like any other.
 	git pull
 	```
 
-1. Copy the wiki pages to `docs/` directory of `hydra` project.
+1. Copy the wiki pages to `doc/` directory of `hydra` repository.
 
 	```
 	cp -a path/to/hydra.wiki/* path/to/hydra/doc/

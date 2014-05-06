@@ -1,6 +1,3 @@
-This lesson is known to work with hydra version 6.2.0.   
-_Please update this wiki to reflect any other versions that have been tested._
-
 # Goals
 * Set up Models to represent relationships between different types of objects
 * Create and modify relationships between objects
@@ -28,6 +25,11 @@ class Datastreams::PageMetadata < ActiveFedora::OmDatastream
   def self.xml_template
     Nokogiri::XML.parse("<fields/>")
   end
+
+  def prefix
+    '' # add a prefix for solr index terms if you need to namespace identical terms in multiple data streams 
+  end
+
 end
 
 ```
@@ -52,7 +54,7 @@ This is very similar to how our Book class looks, with the exception of the line
 
 ### Step 3: Make Books aware of their Pages
 
-Let's edit the Book class and add the other half of the relationship:
+Let's edit the Book class in ```app/models/book.rb``` and add the other half of the relationship:
 
 ```ruby
   # within app/models/book.rb
@@ -72,6 +74,8 @@ p.book = b
  => #<Book pid:"changeme:1", title:"Anna Karenina", author:"Tolstoy, Leo"> 
 p.save
  => true 
+b.reload
+ => #<Book pid:"changeme:1", title:"Anna Karenina", author:"Tolstoy, Leo"> 
 b.pages
  => [#<Page pid:"changeme:2", number:1, text:"Happy families are all alike; every unhappy family is unhappy in its own way.">] 
 ```
@@ -89,7 +93,7 @@ Alternatively, look at the datastream in your browser at [http://localhost:8983/
 
 Either way, you should see RDF that looks like this:
 
-```
+```text
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns0="info:fedora/fedora-system:def/model#" xmlns:ns1="info:fedora/fedora-system:def/relations-external#">
   <rdf:Description rdf:about="info:fedora/changeme:2">
@@ -123,5 +127,5 @@ $> git commit -m "Created a book page model with relationship to the book model"
 ```
 
 # Next Step
-Go on to [[Lesson: Adding Content Datastreams]] or 
+Go on to **BONUS** [[Lesson: Adding Content Datastreams]] or 
 explore other [Dive into Hydra](Dive into Hydra#Bonus) tutorial bonus lessons.

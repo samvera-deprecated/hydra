@@ -1,6 +1,3 @@
-This lesson is known to work with hydra version 6.1.0, 6.2.0.   
-_Please update this wiki to reflect any other versions that have been tested._
-
 # Goals
 * Add "file-bearing" Datastreams to models and objects
 * See where files are stored in Fedora objects and how to retrieve them
@@ -57,4 +54,4 @@ $> git commit -m "Created a content datastream"
 ```
 
 # Next Step
-Proceed to [[Lesson: Generate Rails Scaffolding for Creating and Editing Books]] or explore other [Dive into Hydra](Dive into Hydra#bonus) tutorial bonus lessons.
+Proceed to **BONUS** [[Lesson: Generate Rails Scaffolding for Creating and Editing Books]] or explore other [Dive into Hydra](Dive into Hydra#bonus) tutorial bonus lessons.

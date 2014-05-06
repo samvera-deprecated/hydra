@@ -1,4 +1,4 @@
-This tutorial is known to work with [hydra](http://rubygems.org/gems/hydra) release version 6.1.0.   
+This tutorial is tested to work with [hydra](http://rubygems.org/gems/hydra) release version 7.0.0.   
 _Please update this wiki to reflect any other versions that have been tested._
 
 # Prerequisites
@@ -11,8 +11,8 @@ The tutorial also mentions using [Ruby Version Manager](http://rvm.io), a.k.a RV
 
 # System Requirements
 Your system should have the following installed before beginning the walkthrough
-+ [ruby](http://www.ruby-lang.org/en/) 1.9.3 or 2.0.0
-+ [rails](http://rubyonrails.org/)  ~>3.2.15 or ~>4.0.0
++ [ruby](http://www.ruby-lang.org/en/) 2.1.1 (also works with 2.0.0)
++ [rails](http://rubyonrails.org/)  ~>4.1.0  (also works with 3.2.x & 4.0.x)
 + [git](http://git-scm.com/)
 + [java](http://www.java.com/en/) runtime >= 6.0 
 
@@ -29,14 +29,10 @@ Your system should have the following installed before beginning the walkthrough
 
 # Steps/Lessons
 1. [[Lesson: Generate a Rails Application]]
-1. [[Lesson: Create a git Repository]]
 1. [[Lesson: Add the Hydra Dependencies]]
-1. [[Lesson: Run the Hydra generator]]
 1. [[Lesson: Install hydra-jetty]]
-1. [[Lesson: Start Jetty]]
 1. [[Lesson: Start the Application & Search for Results]]
 1. [[Lesson: Build a Book Model]]
-1. [[Lesson: Turn Off Access Controls]]
 1. [[Lesson: Make Blacklight Return Search Results]]
 
 ## Bonus
@@ -45,7 +41,6 @@ You've completed the main tutorial, the following lessons can be completed in an
 1. [[Lesson: Define Relationships Between Objects]]  
 1. [[Lesson: Adding Content Datastreams]]  
 1. [[Lesson: Generate Rails Scaffolding for Creating and Editing Books]]  
-1. [[Lesson: Set up your Rails Application to use RSpec]]  
 
 # Next Steps
 You've finished the initial Hydra tutorial and learned about setting up the basic hydra framework, building basic data models, establishing relationships between models, and modifying the basic user interface provided in a default hydra install.  There is still lots more to learn.  At this point, you can explore the ideas in this tutorial further by spending some time building out your models to support more complex metadata, further customizing your application views, and/or adding tests to make your applications more robust and easy to maintain.

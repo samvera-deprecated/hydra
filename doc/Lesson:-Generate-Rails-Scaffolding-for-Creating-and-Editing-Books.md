@@ -1,6 +1,3 @@
-This Tutorial is known to work with hydra version 6.1.0, 6.2.0.  
-_Please update this wiki to reflect any other versions that have been tested._
-
 # Goals
 
 - Understand the difference between unique (single-value) and multi-valued metadata fields
@@ -44,22 +41,21 @@ Removing test/unit/helpers/
 
 Run the `rails server` and visit [[http://localhost:3000/books]]
 
-If you see 'uninitialized constant Book::BookMetadata' you'll need to edit `app/models/datastreams/book_metadata.rb`
+Explore the pages for creating, editing and showing Books.
 
-Replace the first line BookMetadata with Datastreams::BookMetadata:
-
-```ruby
-class Datastreams::BookMetadata < ActiveFedora::OmDatastream
-```
-
-You will also need to edit `app/models/book.rb`
-
-Again, replace BookMetadata with Datastreams::BookMetadata:
-
-```ruby
-  has_metadata 'descMetadata', type: Datastreams::BookMetadata
-```
-Explore the pages for creating, editing and showing Books.  
+> ####Rails 3-troubleshooting:
+> If you see 'uninitialized constant Book::BookMetadata' you'll need to edit two files.
+> Open `app/models/datastreams/book_metadata.rb` and replace `BookMetadata` in the class definition with `Datastreams::BookMetadata` i.e.
+> 
+> ```ruby
+> class Datastreams::BookMetadata < ActiveFedora::OmDatastream
+> ```
+>
+> You will also need to edit `app/models/book.rb` and replace `BookMetadata` with `Datastreams::BookMetadata`:
+>
+> ```ruby
+>  has_metadata 'descMetadata', type: Datastreams::BookMetadata
+> ```  
 
 ### Step 3: Commit your work
 
@@ -179,4 +175,4 @@ git commit -m "Handling multivalued author fields"
 Based on the concepts in steps 1-7, determine whether you want 'Title' to display as a single or multi-valued field and make appropriate edits to the 'show' view and '_form' partial on your own.
 
 # Next Step
-Proceed to [[Lesson: Set up your Rails Application to use RSpec]] or explore other [Dive into Hydra](Dive into Hydra#Bonus) tutorial bonus lessons.
+Proceed to additional hydra tutorials including [Tame Your XML With OM](https://github.com/projecthydra/om/wiki/Tame-your-XML-with-OM) and [Access Controls with Hydra](https://github.com/projecthydra/hydra-head/wiki/Access-Controls-with-Hydra) or go back to explore other [Dive into Hydra](Dive into Hydra#Bonus) tutorial bonus lessons.
