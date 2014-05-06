@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'om', '~> 3.0.4'
   gem.add_dependency 'solrizer', '~> 3.1.1'
   gem.add_dependency 'rsolr', '~> 1.0.10'
-  gem.add_dependency 'blacklight', '~> 5.3.0'
+  gem.add_dependency 'blacklight', '~> 5.4.0'
   gem.add_dependency 'nokogiri', '~> 1.6.0'
   gem.add_dependency 'rubydora', '~> 1.7.4'
   gem.add_dependency 'nom-xml', '~> 0.5.1'
