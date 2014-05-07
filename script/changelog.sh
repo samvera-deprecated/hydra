@@ -2,8 +2,7 @@
 
 function show_help() {
   echo "Usage: changelog.sh [options]"
-  echo "Generates a changelog from git history, ommitting commit messages that"
-  echo "  are merges or contain the following: \"$skip_tag\""
+  echo "Generates a changelog from git history"
   echo
   echo "Format:"
   echo "YYYY-MM-DD: commit subject [committer name]"
@@ -19,7 +18,6 @@ function show_help() {
 verbose=0
 range_parameter=0
 banner=0
-skip_tag="\[log skip\]"
 repository_path="./"
 
 function default_range() {
@@ -75,12 +73,8 @@ function get_format() {
 pretty_format=`get_format`
 
 function changelog() {
-  # Get a list of all SHA1 commits
-  #   Filter the list to exclude all SHA1 commits with $skip_tag
-  #   Then requery the log and output format
-  cd $repository_path && git log $range --no-merges --format=%H $@ |
-    grep -v -f <(cd $repository_path && git log $range --no-merges --format=%H --grep="$skip_tag" $@) |
-    git log $range --no-merges --pretty="$pretty_format" --date=short --stdin --no-walk
+  # Get a list of all commits for the ranger that were not merges
+  cd $repository_path && git log $range --no-merges --pretty="$pretty_format" --date=short
 }
 
 function main() {
