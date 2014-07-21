@@ -121,9 +121,9 @@ The answer is that active-fedora has a config file that it uses to look up RDF p
 
 Now that we've added page relationships, it's a great time to commit to git:
 
-```bash
-$> git add .
-$> git commit -m "Created a book page model with relationship to the book model"
+```text
+git add .
+git commit -m "Created a book page model with relationship to the book model"
 ```
 
 # Next Step

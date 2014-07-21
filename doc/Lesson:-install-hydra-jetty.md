@@ -25,6 +25,12 @@ Use the hydra:jetty generator to install the hydra-jetty package by running:
 rails g hydra:jetty
 ```
 
+Note: this requires that your system have curl installed. If it does not, you may see an unhelpful error:
+
+```text
+Unable to download jetty from https://github.com/projecthydra/hydra-jetty/archive/v7.0.0.zip
+```
+
 This generator is provided by the jettywrapper gem.
 
 

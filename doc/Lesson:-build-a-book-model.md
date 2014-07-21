@@ -254,9 +254,9 @@ Now your object is indexed properly, but it **won't show up in Blacklight's sear
 
 Now that we've got our model working, it's a great time to commit to git:
 
-```bash
-$> git add .
-$> git commit -m "Created a book model and a datastream"
+```text
+git add .
+git commit -m "Created a book model and a datastream"
 ```
 
 # Next Step

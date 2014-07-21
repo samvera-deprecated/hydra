@@ -59,9 +59,9 @@ Save the file, and refresh your web browser. You should now see a result for "An
 
 Now that we've updated our search functionality, it's a great time to commit to git:
 
-```bash
-$> git add .
-$> git commit -m "Disabled access controls and set default search fields"
+```text
+git add .
+git commit -m "Disabled access controls and set default search fields"
 ```
 
 # Next Step
