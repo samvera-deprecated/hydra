@@ -34,8 +34,8 @@ To add the file to one of our page objects, open up the console again:
 Now you're ready to add the file.  Choose a file on your computer that you want to add as the "pageContent".  In the lines below we're pretending that the path to the file is "/Users/adamw/Desktop/page1.pdf".  Replace that with the correct local path for the file you want to use.
 
 ```ruby
- > p.pageContent.content = File.open("/Users/adamw/Desktop/page1.pdf")
- => #<File:/Users/adamw/Desktop/page1.pdf> 
+ > p.pageContent.content = File.open("../AK Page 4.pdf")
+ => #<File:../AK Page 4.pdf>  
  > p.save
  => true
 ```
@@ -49,8 +49,8 @@ Now if you go to [[http://localhost:8983/fedora/objects/changeme:2/datastreams]]
 Now that we've added a content datastream, it's a great time to commit to git:
 
 ```bash
-$> git add .
-$> git commit -m "Created a content datastream"
+git add .
+git commit -m "Created a content datastream"
 ```
 
 # Next Step

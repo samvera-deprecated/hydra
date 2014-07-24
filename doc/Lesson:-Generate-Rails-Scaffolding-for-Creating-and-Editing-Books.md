@@ -61,7 +61,7 @@ Explore the pages for creating, editing and showing Books.
 
 ```text
 git add .
-git commit -m "Ran scaffold generator"
+git commit -m "Ran Book scaffold generator"
 ```
 
 ### Step 4: Make the Display view show Authors as a multi-valued field
