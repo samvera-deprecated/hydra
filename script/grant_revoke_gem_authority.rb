@@ -49,6 +49,7 @@ HYDRA_COMMITTER_EMAILS = [
   "mark@curationexperts.com",
   "matt@curationexperts.com",
   "mbklein@gmail.com",
+  "mkorcy@gmail.com",
   "mstrom81@gmail.com",
   "ndushay@stanford.edu",
 ]
