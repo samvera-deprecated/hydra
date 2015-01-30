@@ -1,3 +1,3 @@
 module Hydra
-  VERSION = "7.1.0"
+  VERSION = "9.0.0.rc1"
 end
