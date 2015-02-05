@@ -1,5 +1,5 @@
 # Hydra
-This gem provides a distibution-like snapshot of all dependencies within the core Hydra technology stack. The components of the stack are as follows:
+This gem provides a distribution-like snapshot of all dependencies within the core Hydra technology stack. The components of the stack are as follows:
 
 * [rubydora](https://github.com/projecthydra/rubydora) - a REST client for Fedora Commons Repository
 * [solrizer](https://github.com/projecthydra/solrizer) - translates indexing directives into Solr field names
