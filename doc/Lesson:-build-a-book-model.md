@@ -104,7 +104,7 @@ Now we'll open the `rails console` again and see how to work with our book.
 
 ```text
 b = Book.create(title: 'Anna Karenina', author: 'Tolstoy, Leo')
- => #<Book pid:"changeme:1", title:["Anna Karenina"], author:["Tolstoy, Leo"]> 
+ => #<Book pid:"changeme:1", title:"Anna Karenina", author:"Tolstoy, Leo"> 
 ```
 
 We've created a new Book object in the repository.  You can see that it has a pid (Fedora Commons persistence identifier) of 'changeme:1'.  Because you set title and author to delegate to the descMetadata datastream, they are stored in that datastream's XML and can be accessed either through the delegated methods on the Book, or by going specifically to the datastream. 
