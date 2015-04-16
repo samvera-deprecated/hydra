@@ -24,8 +24,8 @@ Gem::Specification.new do |gem|
   gem.license = 'APACHE2'
 
   gem.add_dependency 'jettywrapper', '~> 2.0.0'
-  gem.add_dependency 'active-fedora', '~> 9.0.0'
-  gem.add_dependency 'hydra-head', '~> 9.0.0'
+  gem.add_dependency 'active-fedora', '~> 9.1.0.rc1'
+  gem.add_dependency 'hydra-head', '~> 9.1.3'
   gem.add_dependency 'rails', '~> 4.1'
   gem.add_dependency 'om', '~> 3.1.0'
   gem.add_dependency 'solrizer', '~> 3.3.0'
