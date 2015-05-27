@@ -16,6 +16,8 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 
 * Reporting Issues
 * Making Changes
+* Documenting Code
+* Committing Changes
 * Submitting Changes
 * Merging Changes
 
@@ -38,6 +40,24 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * Then checkout the new branch with `git checkout fix/master/my_contribution`.
   * Please avoid working directly on the `master` branch.
   * You may find the [hub suite of commands](https://github.com/defunkt/hub) helpful
+* Make sure you have added the necessary tests for your changes.
+* Run _all_ the tests to assure nothing else was accidentally broken.
+
+### Documenting Code
+
+* All new public methods, modules, and classes should include inline documentation in [YARD](http://yardoc.org/).
+  * Documentation should seek to answer the question "why does this code exist?"
+* Document private / protected methods as desired.
+* If you are working in a file with no prior documentation, do try to document as you gain understanding of the code.
+  * If you don't know exactly what a bit of code does, it is extra likely that it needs to be documented. Take a stab at it and ask for feedback in your pull request.
+  * This work greatly increases the usability of the code base and supports the on-ramping of new committers.
+  * We will all be understanding of one anothers' time constraints in this area.
+* YARD examples:
+  * [Hydra::Works::RemoveGenericFile](https://github.com/projecthydra-labs/hydra-works/blob/master/lib/hydra/works/services/generic_work/remove_generic_file.rb)
+  * [ActiveTriples::LocalName::Minter](https://github.com/ActiveTriples/active_triples-local_name/blob/master/lib/active_triples/local_name/minter.rb)
+
+### Committing changes
+
 * Make commits of logical units.
   * Your commit should include a high level description of your work in HISTORY.textile 
 * Check for unnecessary whitespace with `git diff --check` before committing.
@@ -72,10 +92,6 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
       long to fit in 72 characters
 ```
 
-* Make sure you have added the necessary tests for your changes.
-* Run _all_ the tests to assure nothing else was accidentally broken.
-* When you are ready to submit a pull request
-
 ### Submitting Changes
 
 * Read the article ["Using Pull Requests"](https://help.github.com/articles/using-pull-requests) on GitHub.
@@ -99,6 +115,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * Please take the time to review the changes and get a sense of what is being changed. Things to consider:
   * Does the commit message explain what is going on?
   * Does the code changes have tests? _Not all changes need new tests, some changes are refactorings_
+  * Do all new methods, modules, and classes have comments? Do changed methods, modules, and classes have comments?
   * Does the commit contain more than it should? Are two separate concerns being addressed in one commit?
   * Did the Travis tests complete successfully?
 * If you are uncertain, bring other contributors into the conversation by creating a comment that includes their @username.
