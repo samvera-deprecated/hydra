@@ -40,7 +40,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * Then checkout the new branch with `git checkout fix/master/my_contribution`.
   * Please avoid working directly on the `master` branch.
   * You may find the [hub suite of commands](https://github.com/defunkt/hub) helpful
-* Make sure you have added the necessary tests for your changes.
+* Make sure you have added sufficient tests and documentation for your changes.
 * Run _all_ the tests to assure nothing else was accidentally broken.
 
 ### Documenting Code
@@ -49,9 +49,9 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * Documentation should seek to answer the question "why does this code exist?"
 * Document private / protected methods as desired.
 * If you are working in a file with no prior documentation, do try to document as you gain understanding of the code.
-  * If you don't know exactly what a bit of code does, it is extra likely that it needs to be documented. Take a stab at it and ask for feedback in your pull request.
+  * If you don't know exactly what a bit of code does, it is extra likely that it needs to be documented. Take a stab at it and ask for feedback in your pull request. You can use the 'blame' button on GitHub to identify the original developer of the code and @mention them in your comment.
   * This work greatly increases the usability of the code base and supports the on-ramping of new committers.
-  * We will all be understanding of one anothers' time constraints in this area.
+  * We will all be understanding of one another's time constraints in this area.
 * YARD examples:
   * [Hydra::Works::RemoveGenericFile](https://github.com/projecthydra-labs/hydra-works/blob/master/lib/hydra/works/services/generic_work/remove_generic_file.rb)
   * [ActiveTriples::LocalName::Minter](https://github.com/ActiveTriples/active_triples-local_name/blob/master/lib/active_triples/local_name/minter.rb)
