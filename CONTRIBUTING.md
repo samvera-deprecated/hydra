@@ -55,6 +55,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * YARD examples:
   * [Hydra::Works::RemoveGenericFile](https://github.com/projecthydra-labs/hydra-works/blob/master/lib/hydra/works/services/generic_work/remove_generic_file.rb)
   * [ActiveTriples::LocalName::Minter](https://github.com/ActiveTriples/active_triples-local_name/blob/master/lib/active_triples/local_name/minter.rb)
+* [Getting started with YARD](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md)
 
 ### Committing changes
 
