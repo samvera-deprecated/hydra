@@ -1,4 +1,4 @@
-# Get an authorization token from GitHub
+# Get an authorization token from GitHub https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 # Set an ENV variable named 'GITHUB_HYDRA_TOKEN'
 # Then run this script:
 # $ ruby ./script/grant_revoke_gem_authority.rb
@@ -8,7 +8,7 @@
 require 'github_api'
 require 'open3'
 
-AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN']
+AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise "Github authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable"
 ORGANIZATION_NAMES = ['projecthydra', 'projecthydra-labs', 'projecthydra-deprecated']
 # Some GitHub user instances do not have an email address defined,
 # so start with the prior list of addresses (registered with Rubygems.org)
