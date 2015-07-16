@@ -8,7 +8,7 @@
 require 'github_api'
 require 'open3'
 
-AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise "Github authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable"
+AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise("Github authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable")
 ORGANIZATION_NAMES = ['projecthydra', 'projecthydra-labs', 'projecthydra-deprecated']
 # Some GitHub user instances do not have an email address defined,
 # so start with the prior list of addresses (registered with Rubygems.org)
