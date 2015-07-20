@@ -1,14 +1,18 @@
-# Get an authorization token from GitHub https://help.github.com/articles/creating-an-access-token-for-command-line-use/
-# Set an ENV variable named 'GITHUB_HYDRA_TOKEN'
-# Then run this script:
-# $ ruby ./script/grant_revoke_gem_authority.rb
-# To also remove owners not found:
+# 1. Get a personal access token from GitHub with the following scopes enabled:
+#    * public_repo
+#    * read:org
+#    * user:email
+# 2. Set an ENV variable named 'GITHUB_HYDRA_TOKEN' containing your token
+# 3. Then run this script:
+#    $ ruby ./script/grant_revoke_gem_authority.rb
+#
+# To also revoke ownership from users whose email addresses are not in the list:
 # $ WITH_REVOKE=true ruby ./script/grant_revoke_gem_authority.rb
 
 require 'github_api'
 require 'open3'
 
-AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise("Github authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable")
+AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise("GitHub authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable")
 ORGANIZATION_NAMES = ['projecthydra', 'projecthydra-labs', 'projecthydra-deprecated']
 # Some GitHub user instances do not have an email address defined,
 # so start with the prior list of addresses (registered with Rubygems.org)
@@ -21,6 +25,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'cjcolvar' => "cjcolvar@indiana.edu",
   'DanCoughlin' => "dan.coughlin@gmail.com",
   'dchandekstark' => "dchandekstark@gmail.com",
+  'escowles' => 'escowles@ticklefish.org',
   'jeremyf' => "jeremy.n.friesen@gmail.com",
   'jkeck' => "jessie.keck@gmail.com",
   'coblej' => "jim.coble@duke.edu",
@@ -72,8 +77,8 @@ committer_emails = committer_map.values.sort.uniq
 
 # Keep track of things
 @errors = []
-bogus_gem_names = []
-gem_names = HANGERS_ON
+@bogus_gem_names = []
+@gem_names = HANGERS_ON
 
 def exists?(name)
   system("gem owner #{name} > /dev/null 2>&1")
@@ -87,9 +92,9 @@ ORGANIZATION_NAMES.each do |org_name|
   github.repos.list(org: org_name).each do |repo|
     name = replace_known_mismatch(repo.name)
     if exists?(name)
-      gem_names << name
+      @gem_names << name
     else
-      bogus_gem_names << repo.full_name
+      @bogus_gem_names << repo.full_name
     end
   end
 end
@@ -101,7 +106,7 @@ def gem_owner_with_error_check(gemname, params)
   end
 end
 
-gem_names.reject { |gemname| FALSE_POSITIVES.include?(gemname) }.each do |gemname|
+@gem_names.reject { |gemname| FALSE_POSITIVES.include?(gemname) }.each do |gemname|
   current_committers = `gem owner #{gemname} | grep -e ^-`.split("\n")
   current_committers.collect! { |cc| cc.sub(/^.\s+/,'')}
 
@@ -116,8 +121,8 @@ gem_names.reject { |gemname| FALSE_POSITIVES.include?(gemname) }.each do |gemnam
   gem_owner_with_error_check(gemname, add_params)
 end
 
-if !bogus_gem_names.empty?
-  $stderr.puts("WARNING: These Hydra repositories do not have gems: #{bogus_gem_names.join(', ')}")
+if !@bogus_gem_names.empty?
+  $stderr.puts("WARNING: These Hydra repositories do not have gems: #{@bogus_gem_names.join(', ')}")
   $stderr.puts("\n")
 end
 
