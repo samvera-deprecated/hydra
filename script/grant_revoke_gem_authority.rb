@@ -18,6 +18,7 @@ ORGANIZATION_NAMES = ['projecthydra', 'projecthydra-labs', 'projecthydra-depreca
 # so start with the prior list of addresses (registered with Rubygems.org)
 KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'awead' => "amsterdamos@gmail.com",
+  'atz' => 'ohiocore@gmail.com',
   'barmintor' => "armintor@gmail.com",
   'bess' => "bess@stanford.edu",
   'cam156' => "cam156@psu.edu",
@@ -55,6 +56,10 @@ HANGERS_ON = [
   'hydra-core',
   'hydra-access-controls',
   'sufia-models'
+]
+# Email addresses that are known not to be registered at rubygems.organization
+SKIP_EMAILS = [
+  'ggeisler@gmail.com'
 ]
 
 puts "(Hang in there! This script takes a couple minutes to run.)"
@@ -103,7 +108,7 @@ end
 def gem_owner_with_error_check(gemname, params)
   Open3.popen3("gem owner #{gemname} #{params}") do |stdin, stdout, stderr, wait_thr|
     stdin.close
-    @errors << "#{gemname}: #{stdout.read.chomp}" unless wait_thr.value.success?
+    @errors << "#{gemname} #{params}: #{stdout.read.chomp}" unless wait_thr.value.success?
   end
 end
 
@@ -117,7 +122,7 @@ end
     gem_owner_with_error_check(gemname, remove_params)
   end
 
-  committers_to_add = committer_emails - current_committers
+  committers_to_add = committer_emails - current_committers - SKIP_EMAILS
   add_params = committers_to_add.map { |email| "-a #{email}" }.join(' ')
   gem_owner_with_error_check(gemname, add_params)
 end
