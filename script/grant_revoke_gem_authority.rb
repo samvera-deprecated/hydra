@@ -25,6 +25,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'cjcolvar' => "cjcolvar@indiana.edu",
   'DanCoughlin' => "dan.coughlin@gmail.com",
   'dchandekstark' => "dchandekstark@gmail.com",
+  'elrayle' => 'elrayle@hotmail.com'
   'escowles' => 'escowles@ticklefish.org',
   'jeremyf' => "jeremy.n.friesen@gmail.com",
   'jkeck' => "jessie.keck@gmail.com",
