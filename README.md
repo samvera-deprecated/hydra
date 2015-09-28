@@ -5,7 +5,7 @@ This gem provides a distribution-like snapshot of all dependencies within the co
 * [solrizer](https://github.com/projecthydra/solrizer) - translates indexing directives into Solr field names
 * [om](https://github.com/projecthydra/om) - a library for defining templates for xml metadata formats
 * [nom-xml](https://github.com/cbeer/nom-xml) - an alternative to om
-* [active-fedora](https://github.com/projecthydra/active_fedora) - an ORM for Fedora and Solr
+* [active-fedora](https://github.com/projecthydra/active_fedora) - a Ruby gem for creating and managing objects in Fedora and Solr
 * [blacklight](https://github.com/projectblacklight/blacklight) - web front end for Solr document discovery (search)
 * [hydra-head](https://github.com/projecthydra/hydra-head) - integration between Blacklight and ActiveFedora. Provides access controls and gated searching.
 * [jettywrapper](https://github.com/projecthydra/jettywrapper) - Utilities for starting up a jetty server with Solr and Fedora useful in development and testing.
