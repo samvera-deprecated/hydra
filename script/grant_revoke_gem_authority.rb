@@ -38,7 +38,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'mbklein' => "mbklein@gmail.com",
   'mkorcy' => "mkorcy@gmail.com",
   'ndushay' => "ndushay@stanford.edu",
-  'terrellt' => "trey.terrell@oregonstate.edu"
+  'terrellt' => "tterrell@princeton.edu"
 }
 # Some GitHub repositories are named differently from their gems
 KNOWN_MISMATCHED_GEM_NAMES = {
