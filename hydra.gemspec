@@ -38,5 +38,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'ldp', '>= 0.3.1'
   gem.add_dependency 'active-triples', '~> 0.7.0'
   gem.add_dependency 'nom-xml', '~> 0.5.1'
-  gem.add_development_dependency 'github_api', '~> 0.10.1'
+  gem.add_development_dependency 'github_api', '~> 0.13'
 end
