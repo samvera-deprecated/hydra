@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.license = 'APACHE2'
 
-  gem.add_dependency 'fcrepo_wrapper', '~> 0.2.0'
+  gem.add_dependency 'fcrepo_wrapper', '~> 0.2.1'
   gem.add_dependency 'active-fedora', '~> 9.8.0'
   gem.add_dependency 'hydra-head', '~> 9.6.0'
   gem.add_dependency 'rails', '~> 4.2'
