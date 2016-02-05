@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   gem.license = 'APACHE2'
-
+ 
   gem.add_dependency 'fcrepo_wrapper', '~> 0.2.1'
   gem.add_dependency 'solr_wrapper', '~> 0.5.0'
   gem.add_dependency 'active-fedora', '~> 9.9.0'
