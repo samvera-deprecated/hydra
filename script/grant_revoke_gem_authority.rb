@@ -57,7 +57,8 @@ FALSE_POSITIVES = [
 HANGERS_ON = [
   'hydra-core',
   'hydra-access-controls',
-  'sufia-models'
+  'sufia-models',
+  'curation_concerns-models'
 ]
 # Email addresses that are known not to be registered at rubygems.organization
 SKIP_EMAILS = [
