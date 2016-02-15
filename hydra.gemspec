@@ -25,8 +25,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'fcrepo_wrapper', '~> 0.2.1'
   gem.add_dependency 'solr_wrapper', '~> 0.5.0'
-  gem.add_dependency 'active-fedora', '~> 9.8.2'
-  gem.add_dependency 'hydra-head', '~> 9.7.0'
+  gem.add_dependency 'active-fedora', '~> 9.9.0'
+  gem.add_dependency 'hydra-head', '~> 9.8.0'
   gem.add_dependency 'rails', '~> 4.2'
   gem.add_dependency 'om', '~> 3.1.0'
   gem.add_dependency 'solrizer', '~> 3.3.0'
