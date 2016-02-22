@@ -1,14 +1,16 @@
 # Hydra
 This gem provides a distribution-like snapshot of all dependencies within the core Hydra technology stack. The components of the stack are as follows:
 
-* [rubydora](https://github.com/projecthydra/rubydora) - a REST client for Fedora Commons Repository
+* [ldp](https://github.com/projecthydra/ldp) - Linked Data Platform client library for Ruby
 * [solrizer](https://github.com/projecthydra/solrizer) - translates indexing directives into Solr field names
 * [om](https://github.com/projecthydra/om) - a library for defining templates for xml metadata formats
 * [nom-xml](https://github.com/cbeer/nom-xml) - an alternative to om
 * [active-fedora](https://github.com/projecthydra/active_fedora) - a Ruby gem for creating and managing objects in Fedora and Solr
+* [active-triples](https://github.com/ActiveTriples/ActiveTriples) - a Ruby gem that provides an ActiveFedora-like interface for RDF data.
 * [blacklight](https://github.com/projectblacklight/blacklight) - web front end for Solr document discovery (search)
 * [hydra-head](https://github.com/projecthydra/hydra-head) - integration between Blacklight and ActiveFedora. Provides access controls and gated searching.
-* [jettywrapper](https://github.com/projecthydra/jettywrapper) - Utilities for starting up a jetty server with Solr and Fedora useful in development and testing.
+* [Fcrepo Wrapper](https://github.com/cbeer/fcrepo_wrapper) - Utility for wrapping tasks with a Fedora instance, for use in development and testing. Replaces role of [hydra-jetty](https://github.com/projecthydra/hydra-jetty)
+* [Solr Wrapper](https://github.com/cbeer/solr_wrapper) - Utility for wrapping tasks with a Solr instance, for use in development and testing. Replaces role of [hydra-jetty](https://github.com/projecthydra/hydra-jetty)
 
 Additionally, versions are locked to the following transitive dependencies, as they are critial to the stack:
 * [Nokogiri](http://nokogiri.org/)

@@ -28,6 +28,8 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'dchandekstark' => "dchandekstark@gmail.com",
   'elrayle' => 'elrayle@hotmail.com',
   'escowles' => 'escowles@ticklefish.org',
+  'grosscol' => 'grosscol@gmail.com',
+  'hackmastera' => 'anna3lc@gmail.com',
   'jeremyf' => "jeremy.n.friesen@gmail.com",
   'jkeck' => "jessie.keck@gmail.com",
   'coblej' => "jim.coble@duke.edu",
@@ -55,7 +57,8 @@ FALSE_POSITIVES = [
 HANGERS_ON = [
   'hydra-core',
   'hydra-access-controls',
-  'sufia-models'
+  'sufia-models',
+  'curation_concerns-models'
 ]
 # Email addresses that are known not to be registered at rubygems.organization
 SKIP_EMAILS = [

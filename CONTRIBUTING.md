@@ -82,7 +82,9 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 
         class PostsController
           def index
-            respond_with Post.limit(10)
+            respond_to do |wants|
+              wants.html { render 'index' }
+            end
           end
         end
 
@@ -102,7 +104,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * `git pull --rebase`
   * `git checkout <your-branch>`
   * `git rebase master`
-  * It is likely a good idea to run your tests again.
+  * It is a good idea to run your tests again.
 * If you've made more than one commit take a moment to consider whether squashing commits together would help improve their logical grouping.
   * [Detailed Walkthrough of One Pull Request per Commit](http://ndlib.github.io/practices/one-commit-per-pull-request/)
   * `git rebase --interactive HEAD~<number-of-commits>` ([See Github help](https://help.github.com/articles/interactive-rebase))
@@ -122,9 +124,6 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * Did the Travis tests complete successfully?
 * If you are uncertain, bring other contributors into the conversation by creating a comment that includes their @username.
 * If you like the pull request, but want others to chime in, create a +1 comment and tag a user.
-
-## New Developers
-A great way to get new developers involved and to learn the process is to have them go through the Hierarchy of Promises and create a pull request to improve it.
 
 # Additional Resources
 
