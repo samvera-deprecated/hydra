@@ -115,7 +115,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 
 ### Merging Changes
 
-* It is considered "poor from" to merge your own request.
+* It is considered "poor form" to merge your own request.
 * Please take the time to review the changes and get a sense of what is being changed. Things to consider:
   * Does the commit message explain what is going on?
   * Does the code changes have tests? _Not all changes need new tests, some changes are refactorings_
