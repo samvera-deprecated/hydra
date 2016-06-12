@@ -1,4 +1,5 @@
 # Hydra Developer Wiki
+(Please feel free to edit this wiki and help make it better - if you're not sure about changes, propose them on hydra-tech@googlegroups.com first)
 
 The projecthydra gem is a container gem which locks major version dependencies for a complete release of the hydra framework.  Requiring this gem or including it in your Gemfile will load or install a coherent set of hydra gems developed and tested for interoperability.  Developers requiring the most current functionality may choose to omit this gem and build their gem dependencies manually.
 
@@ -21,13 +22,14 @@ This wiki is targeted towards developers who are implementing Hydra Heads. The [
 - [Filtering Search Results With Hydra Access Controls](https://github.com/projecthydra/hydra-head/wiki/Filtering-search-results-with-hydra-access-controls)
 - [File Uploads](https://github.com/projecthydra/hydra-head/wiki/File-uploads)
 - [File Downloads](https://github.com/projecthydra/hydra-head/wiki/File-downloads)
-- [[Configuring Solr and Fedora]]
 - [Deployment Hardware](https://wiki.duraspace.org/display/hydra/Deployment+Hardware+Information)
 - [[Migration Notes]]
 - [[Hydra Recipes]] - short how-to articles
+- [[LDP Containers for the perplexed]]
 
 ### Reference for Hydra Contributors/Committers
 
 If you are making changes to the hydra-head code itself, you will want to read
 
 - [How to Contribute](https://github.com/projecthydra/hydra/blob/master/CONTRIBUTING.md)
+- [[Hackfest ideas]]
