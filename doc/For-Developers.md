@@ -27,7 +27,6 @@ All of our code is hosted on Github in the [projecthydra](https://github.com/pro
     * [Steps to Defining a new Model for your Hydra Applications](https://wiki.duraspace.org/display/hydra/Steps+to+Defining+a+new+Model+for+your+Hydra+Applications)
     * [ActiveFedora Console Tour] (https://github.com/projecthydra/active_fedora/wiki/Getting-Started:-Console-Tour)
     * [OM documentation](https://github.com/projecthydra/om/blob/master/README.textile)
-    * Recommended Code Commenting Practices: think about using [YARD](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md), at least provide comments that can illuminate [RDoc](http://rdoc.rubyforge.org) generated documentation
     * Hydra's Bundled Jetty https://github.com/projecthydra/hydra-jetty
     * [OM Terminologies in the Wild](https://wiki.duraspace.org/display/hydra/OM+Terminologies+in+the+Wild)
 

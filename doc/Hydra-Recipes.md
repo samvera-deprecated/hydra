@@ -7,3 +7,7 @@
 [[Indexing non English content]] - if you are indexing non English content into Hydra, you may want to update your Solr config to take advantage of Solr's language specific stemming capabilities.
 
 [Uniqueness validator for ActiveFedora](https://gist.github.com/dchandekstark/f969ad21bf518c7cd3c5) - Inspired by the ActiveRecord uniqueness validator, with some limitations.
+
+[[Using rdf:resource within your models]] 
+
+[[Recipe: Add full text indexing to your app]]
