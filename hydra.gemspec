@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.license = 'APACHE2'
 
   gem.add_dependency 'fcrepo_wrapper', '~> 0.5.1'
-  gem.add_dependency 'solr_wrapper', '~> 0.12.1'
+  gem.add_dependency 'solr_wrapper', '~> 0.13.1'
   gem.add_dependency 'active-fedora', '~> 10.0.0'
   gem.add_dependency 'hydra-head', '~> 10.0.0'
   gem.add_dependency 'rails', '~> 4.2'
