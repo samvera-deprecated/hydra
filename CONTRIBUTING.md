@@ -20,6 +20,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * Committing Changes
 * Submitting Changes
 * Merging Changes
+* [Releasing Changes](./RELEASING.md)
 
 ### Reporting Issues
 
