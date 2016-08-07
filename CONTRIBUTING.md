@@ -19,6 +19,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * Documenting Code
 * Committing Changes
 * Submitting Changes
+* Assigning a Pull Request
 * Merging Changes
 
 ### Reporting Issues
@@ -111,7 +112,13 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * To determine the number of commits on your branch: `git log master..<your-branch> --oneline | wc -l`
   * Squashing your branch's changes into one commit is "good form" and helps the person merging your request to see everything that is going on.
 * Push your changes to a topic branch in your fork of the repository.
+  * If you have commit rights to the main repository, you can push to a topic branch on that repository.
 * Submit a pull request from your fork to the project.
+
+### Assigning a Pull Request
+
+When you submit a pull request, please make sure to assign someone to merge the pull request.
+The assignee is, in your best determination, the best person to review and ultimately merge your pull request.
 
 ### Merging Changes
 
