@@ -31,6 +31,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'grosscol' => 'grosscol@gmail.com',
   'hackmastera' => 'anna3lc@gmail.com',
   'jeremyf' => "jeremy.n.friesen@gmail.com",
+  'jenlindner' => 'jenlindner@gmail.com',
   'jkeck' => "jessie.keck@gmail.com",
   'coblej' => "jim.coble@duke.edu",
   'jpstroop' => "jpstroop@gmail.com",
@@ -51,7 +52,9 @@ KNOWN_MISMATCHED_GEM_NAMES = {
 # GitHub repositories with matching gems that aren't from Hydra
 FALSE_POSITIVES = [
   'hypatia',
-  'rdf-vocab'
+  'rdf-vocab',
+  'lerna',
+  'hydrangea'
 ]
 # Gems that do not have their own GitHub repositories
 HANGERS_ON = [
@@ -62,7 +65,11 @@ HANGERS_ON = [
 ]
 # Email addresses that are known not to be registered at rubygems.organization
 SKIP_EMAILS = [
-  'ggeisler@gmail.com'
+  'ggeisler@gmail.com',
+  'dlrueda@stanford.edu',
+  'jgreben@stanford.edu',
+  'lmcglohon@gmail.com',
+  'ssklar@stanford.edu'
 ]
 
 puts "(Hang in there! This script takes a couple minutes to run.)"
