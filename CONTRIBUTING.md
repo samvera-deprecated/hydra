@@ -3,6 +3,13 @@
 We want your help to make Project Hydra great.
 There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
 
+## Code of Conduct
+
+The Hydra community is dedicated to providing a welcoming and positive experience for all its
+members, whether they are at a formal gathering, in a social setting, or taking part in activities
+online.  Please see our [Code of Conduct](https://wiki.duraspace.org/display/hydra/Code+of+Conduct)
+for more information.
+
 ## Hydra Project Intellectual Property Licensing and Ownership
 
 All code contributors must have an Individual Contributor License Agreement (iCLA) on file with the Hydra Project Steering Group.
