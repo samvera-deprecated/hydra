@@ -1,3 +1,3 @@
 module Hydra
-  VERSION = "10.0.1".freeze
+  VERSION = "11.0.0".freeze
 end
