@@ -23,6 +23,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.license = 'APACHE2'
 
+  # Note to future maintainers: Please tightly pin dependencies, so they won't
+  # change when a user runs "bundle update". 
+
   gem.add_dependency 'fcrepo_wrapper', '~> 0.7.0'
   gem.add_dependency 'solr_wrapper', '~> 0.19.0'
   gem.add_dependency 'active-fedora', '~> 11.1.1'
