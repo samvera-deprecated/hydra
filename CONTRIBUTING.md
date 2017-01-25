@@ -122,7 +122,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 
 ### Merging Changes
 
-* It is considered "poor form" to merge your own request.
+* You (or another contributor) can merge your pull request after it has been approved by at least one other contributor and there are no requests for changes.
 * Please take the time to review the changes and get a sense of what is being changed. Things to consider:
   * Does the commit message explain what is going on?
   * Does the code changes have tests? _Not all changes need new tests, some changes are refactorings_
