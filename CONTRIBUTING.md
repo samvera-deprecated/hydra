@@ -26,7 +26,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 * Documenting Code
 * Committing Changes
 * Submitting Changes
-* Merging Changes
+* Reviewing and Merging Changes
 
 ### Reporting Issues
 
@@ -68,7 +68,7 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
 ### Committing changes
 
 * Make commits of logical units.
-  * Your commit should include a high level description of your work in HISTORY.textile 
+  * Your commit should include a high level description of your work in HISTORY.textile
 * Check for unnecessary whitespace with `git diff --check` before committing.
 * Make sure your commit messages are [well formed](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 * If you created an issue, you can close it by including "Closes #issue" in your commit message. See [Github's blog post for more details](https://github.com/blog/1386-closing-issues-via-commit-messages)
@@ -114,23 +114,42 @@ You should also add yourself to the `CONTRIBUTORS.md` file in the root of the pr
   * It is a good idea to run your tests again.
 * If you've made more than one commit take a moment to consider whether squashing commits together would help improve their logical grouping.
   * [Detailed Walkthrough of One Pull Request per Commit](http://ndlib.github.io/practices/one-commit-per-pull-request/)
-  * `git rebase --interactive HEAD~<number-of-commits>` ([See Github help](https://help.github.com/articles/interactive-rebase))
-  * To determine the number of commits on your branch: `git log master..<your-branch> --oneline | wc -l`
+  * `git rebase --interactive master` ([See Github help](https://help.github.com/articles/interactive-rebase))
   * Squashing your branch's changes into one commit is "good form" and helps the person merging your request to see everything that is going on.
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request from your fork to the project.
 
-### Merging Changes
+### Reviewing and Merging Changes
 
-* It is considered "poor form" to merge your own request.
-* Please take the time to review the changes and get a sense of what is being changed. Things to consider:
+We adopted [Github's Pull Request Review](https://help.github.com/articles/about-pull-request-reviews/) for our repositories.
+Common checks that may occur in our repositories:
+
+1. Travis CI - where our automated tests are running
+2. Hound CI - where we check for style violations
+3. Approval Required - Github enforces at least one person approve a pull request. Also, all reviewers that have chimed in must approve.
+4. CodeClimate - is our code remaining healthy (at least according to static code analysis)
+
+If one or more of the required checks failed (or are incomplete), the code should not be merged (and the UI will not allow it). If all of the checks have passed, then anyone on the project (including the pull request submitter) may merge the code.
+
+*Example: Carolyn submits a pull request, Justin reviews the pull request and approves. However, Justin is still waiting on other checks (Travis CI is usually the culprit), so he does not merge the pull request. Eventually, all of the checks pass. At this point, Carolyn or anyone else may merge the pull request.*
+
+#### Things to Consider When Reviewing
+
+First, the person contributing the code is putting themselves out there. Be mindful of what you say in a review.
+
+* Ask clarifying questions
+* State your understanding and expectations
+* Provide example code or alternate solutions, and explain why
+
+This is your chance for a mentoring moment of another developer. Take time to give an honest and thorough review of what has changed. Things to consider:
+
   * Does the commit message explain what is going on?
-  * Does the code changes have tests? _Not all changes need new tests, some changes are refactorings_
-  * Do all new methods, modules, and classes have comments? Do changed methods, modules, and classes have comments?
+  * Does the code changes have tests? _Not all changes need new tests, some changes are refactors_
+  * Do new or changed methods, modules, and classes have documentation?
   * Does the commit contain more than it should? Are two separate concerns being addressed in one commit?
-  * Did the Travis tests complete successfully?
-* If you are uncertain, bring other contributors into the conversation by creating a comment that includes their @username.
-* If you like the pull request, but want others to chime in, create a +1 comment and tag a user.
+  * Does the description of the new/changed specs match your understanding of what the spec is doing?
+
+If you are uncertain, bring other contributors into the conversation by assigning them as a reviewer.
 
 # Additional Resources
 
