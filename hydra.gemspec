@@ -24,12 +24,12 @@ Gem::Specification.new do |gem|
   gem.license = 'APACHE2'
 
   # Note to future maintainers: Please tightly pin dependencies, so they won't
-  # change when a user runs "bundle update". 
+  # change when a user runs "bundle update".
 
   gem.add_dependency 'fcrepo_wrapper', '~> 0.7.0'
   gem.add_dependency 'solr_wrapper', '~> 0.19.0'
   gem.add_dependency 'active-fedora', '~> 11.1.1'
-  gem.add_dependency 'hydra-head', '~> 10.3.4'
+  gem.add_dependency 'hydra-head', '~> 10.4.0'
   gem.add_dependency 'rails', '~> 5.0.1'
   gem.add_dependency 'solrizer', '~> 3.4.1'
   gem.add_dependency 'rsolr', '~> 1.1.2'
