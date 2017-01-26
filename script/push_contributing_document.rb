@@ -1,7 +1,6 @@
 require 'github_api'
+require 'open-uri'
 require File.expand_path('../../lib/hydra/version', __FILE__)
-
-ORGANIZATION_NAME = 'projecthydra'
 
 #
 # You will need to use one of your properly scoped Github authentication keys:
@@ -11,36 +10,63 @@ ORGANIZATION_NAME = 'projecthydra'
 # `ruby script/push_contributing_docuemnt.rb SUPER-SECRET-TOKEN`
 #
 AUTHORIZATION_TOKEN = ARGV.fetch(0)
+MESSAGE = "Updating CONTRIBUTING.md as per Hydra v#{Hydra::VERSION}"
 
 github = Github.new oauth_token: AUTHORIZATION_TOKEN
+branch_name = "updating-contributing-guidelines-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}"
 
-repos = github.repos.list(org: ORGANIZATION_NAME)
-contributing_content = File.read(File.expand_path('../../CONTRIBUTING.md', __FILE__))
+def with_pull_request_creation(organization_name:, repo:, branch_name:)
+  master_sha = github.git_data.references.get(organization_name, repo.name, 'heads/master').body.object.sha
+  github.git_data.references.create(organization_name, repo.name, ref: "refs/heads/#{branch_name}", sha: master_sha)
+  yield
+  github.pull_requests.create(
+    organization_name,
+    repo.name,
+    title: MESSAGE,
+    body: "```console\nruby script/#{File.basename(__FILE__)} SUPER-SECRET-TOKEN\n```\n\n[skip ci]",
+    head: branch_name,
+    base: master
+  )
+end
 
-repos.each do |repo|
-  puts "Processing #{repo.full_name}"
-  begin
-    output = github.repos.contents.get(
-      ORGANIZATION_NAME, repo.name, 'CONTRIBUTING.md',
-      path:'CONTRIBUTING.md'
-    )
-    github.repos.contents.update(
-      ORGANIZATION_NAME, repo.name, 'CONTRIBUTING.md',
-      path:'CONTRIBUTING.md',
-      content: contributing_content,
-      sha: output.sha,
-      message: "Updating CONTRIBUTING.md as per Hydra v#{Hydra::VERSION}\n\n[ci skip]"
-    )
-    puts "Updated #{repo.full_name} CONTRIBUTING.md"
-  rescue Github::Error::NotFound
-    github.repos.contents.create(
-      ORGANIZATION_NAME, repo.name, 'CONTRIBUTING.md',
-      path:'CONTRIBUTING.md',
-      content: contributing_content,
-      message: "Updating CONTRIBUTING.md as per Hydra v#{Hydra::VERSION}\n\n[ci skip]"
+['projecthydra', 'projecthydra-labs'].each do |organization_name|
 
-    )
-    puts "Created #{repo.full_name} CONTRIBUTING.md"
+  repos = github.repos.list(org: organization_name)
+  contributing_content = File.read(File.expand_path('../../CONTRIBUTING.md', __FILE__))
+
+  repos.each do |repo|
+    begin
+      output = github.repos.contents.get(organization_name, repo.name, 'CONTRIBUTING.md', path:'CONTRIBUTING.md')
+      # Check if we already have this content
+      if output.body.content == Base64.encode64(contributing_content)
+        puts "Skipped #{repo.full_name} CONTRIBUTING.md"
+        next
+      end
+
+      # And we'll go ahead and update the file
+      with_pull_request_creation(organization_name: organization_name, repo: repo, branch_name: branch_name) do
+        github.repos.contents.update(
+          organization_name, repo.name, 'CONTRIBUTING.md',
+          path:'CONTRIBUTING.md',
+          content: contributing_content,
+          sha: output.sha,
+          branch: branch_name,
+          message: MESSAGE
+        )
+        puts "Updated #{repo.full_name} CONTRIBUTING.md"
+      end
+    # Looks like its time to create the file
+    rescue Github::Error::NotFound
+      with_pull_request_creation(organization_name: organization_name, repo: repo, branch_name: branch_name) do
+        github.repos.contents.create(
+          organization_name, repo.name, 'CONTRIBUTING.md',
+          path:'CONTRIBUTING.md',
+          content: contributing_content,
+          branch: branch_name,
+          message: MESSAGE
+          )
+        puts "Created #{repo.full_name} CONTRIBUTING.md"
+      end
+    end
   end
-  puts "Processed #{repo.full_name}"
 end
