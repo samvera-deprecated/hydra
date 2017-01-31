@@ -23,7 +23,7 @@ def with_pull_request_creation(organization_name:, repo:, branch_name:)
     organization_name,
     repo.name,
     title: MESSAGE,
-    body: "```console\nruby script/#{File.basename(__FILE__)} SUPER-SECRET-TOKEN\n```\n\n[skip ci]",
+    body: "```console\nruby script/#{File.basename(__FILE__)} SUPER-SECRET-TOKEN\n```\n",
     head: branch_name,
     base: master
   )
