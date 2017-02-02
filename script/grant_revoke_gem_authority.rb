@@ -8,6 +8,9 @@
 #
 # To also revoke ownership from users whose email addresses are not in the list:
 # $ WITH_REVOKE=true ruby ./script/grant_revoke_gem_authority.rb
+#
+# To print more information on what the script is doing:
+# $ VERBOSE=true ruby ./script/grant_revoke_gem_authority.rb
 
 require 'github_api'
 require 'open3'
@@ -72,8 +75,12 @@ SKIP_EMAILS = [
   'dlrueda@stanford.edu',
   'jgreben@stanford.edu',
   'lmcglohon@gmail.com',
-  'ssklar@stanford.edu'
+  'ssklar@stanford.edu',
+  'tony.zanella@gmail.com',
+  'dweber.consulting@gmail.com',
+  'blalbritton@gmail.com'
 ]
+VERBOSE = ENV.fetch('VERBOSE', false)
 
 puts "(Hang in there! This script takes a couple minutes to run.)"
 
@@ -82,7 +89,7 @@ github = Github.new(oauth_token: AUTHORIZATION_TOKEN, auto_pagination: true)
 # Get the ID of the GitHub-provided "Owners" team from the projecthydra org
 # We don't currently grant gem ownership to the folks in the other two orgs
 # (This just preserves the prior behavior.)
-owner_team_id = github.orgs.teams.list('projecthydra').select { |team| team.name == 'Owners' }.first.id
+owner_team_id = github.orgs.teams.list(org: 'projecthydra').select { |team| team.name == 'Core' }.first.id
 owners = github.orgs.teams.list_members(owner_team_id)
 # Start with the prior (known to work) list of email addresses
 committer_map = KNOWN_COMMITTER_EMAIL_ADDRESSES.dup
@@ -119,13 +126,14 @@ ORGANIZATION_NAMES.each do |org_name|
 end
 
 def gem_owner_with_error_check(gemname, params)
-  Open3.popen3("gem owner #{gemname} #{params}") do |stdin, stdout, stderr, wait_thr|
-    stdin.close
+  command = "gem owner #{gemname} #{params}"
+  puts "running: #{command}" if VERBOSE
+  Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
     @errors << "#{gemname} #{params}: #{stdout.read.chomp}" unless wait_thr.value.success?
   end
 end
 
-@gem_names.reject { |gemname| FALSE_POSITIVES.include?(gemname) }.each do |gemname|
+@gem_names.reject { |gemname| FALSE_POSITIVES.include?(gemname) }.sort.each do |gemname|
   current_committers = `gem owner #{gemname} | grep -e ^-`.split("\n")
   current_committers.collect! { |cc| cc.sub(/^.\s+/,'')}
 
@@ -140,12 +148,12 @@ end
   gem_owner_with_error_check(gemname, add_params)
 end
 
-if !@bogus_gem_names.empty?
-  $stderr.puts("WARNING: These Hydra repositories do not have gems: #{@bogus_gem_names.join(', ')}")
+if @bogus_gem_names.any?
+  $stderr.puts("WARNING: These Hydra repositories do not have gems:\n - #{@bogus_gem_names.sort.join("\n - ")}")
   $stderr.puts("\n")
 end
 
-if !@errors.empty?
+if @errors.any?
   $stderr.puts("The following errors were encountered:")
-  $stderr.puts(%(#{@errors.join("\n")}))
+  $stderr.puts(%(#{@errors.sort.join("\n")}))
 end
