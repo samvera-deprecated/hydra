@@ -31,6 +31,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'escowles' => 'escowles@ticklefish.org',
   'grosscol' => 'grosscol@gmail.com',
   'hackmastera' => 'anna3lc@gmail.com',
+  'hortongn' => 'glen.horton@gmail.com',
   'jeremyf' => "jeremy.n.friesen@gmail.com",
   'jenlindner' => 'jenlindner@gmail.com',
   'jkeck' => "jessie.keck@gmail.com",
