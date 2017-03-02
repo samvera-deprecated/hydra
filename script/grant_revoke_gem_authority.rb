@@ -1,4 +1,5 @@
-# 1. Get a personal access token from GitHub with the following scopes enabled:
+# 1. Get a personal access token from GitHub (https://github.com/settings/tokens)
+#    with the following scopes enabled:
 #    * public_repo
 #    * read:org
 #    * user:email
