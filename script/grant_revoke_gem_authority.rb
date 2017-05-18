@@ -30,6 +30,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'cjcolvar' => "cjcolvar@indiana.edu",
   'coblej' => "jim.coble@duke.edu",
   'DanCoughlin' => "dan.coughlin@gmail.com",
+  'darrenleeweber' => 'dweber.consulting@gmail.com',
   'dchandekstark' => "dchandekstark@gmail.com",
   'elrayle' => 'elrayle@hotmail.com',
   'escowles' => 'escowles@ticklefish.org',
@@ -80,7 +81,6 @@ SKIP_EMAILS = [
   'lmcglohon@gmail.com',
   'ssklar@stanford.edu',
   'tony.zanella@gmail.com',
-  'dweber.consulting@gmail.com',
   'blalbritton@gmail.com'
 ]
 VERBOSE = ENV.fetch('VERBOSE', false)
