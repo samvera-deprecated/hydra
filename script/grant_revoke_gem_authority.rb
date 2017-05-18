@@ -92,7 +92,7 @@ github = Github.new(oauth_token: AUTHORIZATION_TOKEN, auto_pagination: true)
 # Get the ID of the GitHub-provided "Owners" team from the projecthydra org
 # We don't currently grant gem ownership to the folks in the other two orgs
 # (This just preserves the prior behavior.)
-owner_team_id = github.orgs.teams.list(org: 'projecthydra').select { |team| team.name == 'Core' }.first.id
+owner_team_id = github.orgs.teams.list(org: 'projecthydra').select { |team| team.name == 'Admins' }.first.id
 owners = github.orgs.teams.list_members(owner_team_id)
 # Start with the prior (known to work) list of email addresses
 committer_map = KNOWN_COMMITTER_EMAIL_ADDRESSES.dup
