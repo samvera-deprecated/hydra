@@ -3,7 +3,7 @@
 #    * public_repo
 #    * read:org
 #    * user:email
-# 2. Set an ENV variable named 'GITHUB_HYDRA_TOKEN' containing your token
+# 2. Set an ENV variable named 'GITHUB_SAMVERA_TOKEN' containing your token
 # 3. Then run this script:
 #    $ ruby ./script/grant_revoke_gem_authority.rb
 #
@@ -16,8 +16,8 @@
 require 'github_api'
 require 'open3'
 
-AUTHORIZATION_TOKEN = ENV['GITHUB_HYDRA_TOKEN'] || raise("GitHub authorization token was not found in the GITHUB_HYDRA_TOKEN environment variable")
-ORGANIZATION_NAMES = ['projecthydra', 'projecthydra-labs', 'projecthydra-deprecated']
+AUTHORIZATION_TOKEN = ENV['GITHUB_SAMVERA_TOKEN'] || raise("GitHub authorization token was not found in the GITHUB_SAMVERA_TOKEN environment variable")
+ORGANIZATION_NAMES = ['samvera', 'samvera-labs', 'samvera-deprecated']
 # Some GitHub user instances do not have an email address defined,
 # so start with the prior list of addresses (registered with Rubygems.org)
 KNOWN_COMMITTER_EMAIL_ADDRESSES = {
@@ -59,7 +59,7 @@ KNOWN_MISMATCHED_GEM_NAMES = {
   'fcrepo-admin' => 'fcrepo_admin',
   'questioning_authority' => 'qa'
 }
-# GitHub repositories with matching gems that aren't from Hydra
+# GitHub repositories with matching gems that aren't from Samvera
 FALSE_POSITIVES = [
   'hypatia',
   'rdf-vocab',
@@ -89,10 +89,10 @@ puts "(Hang in there! This script takes a couple minutes to run.)"
 
 github = Github.new(oauth_token: AUTHORIZATION_TOKEN, auto_pagination: true)
 
-# Get the ID of the GitHub-provided "Owners" team from the projecthydra org
+# Get the ID of the GitHub-provided "Owners" team from the samvera org
 # We don't currently grant gem ownership to the folks in the other two orgs
 # (This just preserves the prior behavior.)
-owner_team_id = github.orgs.teams.list(org: 'projecthydra').select { |team| team.name == 'Admins' }.first.id
+owner_team_id = github.orgs.teams.list(org: 'samvera').select { |team| team.name == 'Admins' }.first.id
 owners = github.orgs.teams.list_members(owner_team_id)
 # Start with the prior (known to work) list of email addresses
 committer_map = KNOWN_COMMITTER_EMAIL_ADDRESSES.dup
@@ -152,7 +152,7 @@ end
 end
 
 if @bogus_gem_names.any?
-  $stderr.puts("WARNING: These Hydra repositories do not have gems:\n - #{@bogus_gem_names.sort.join("\n - ")}")
+  $stderr.puts("WARNING: These Samvera repositories do not have gems:\n - #{@bogus_gem_names.sort.join("\n - ")}")
   $stderr.puts("\n")
 end
 
