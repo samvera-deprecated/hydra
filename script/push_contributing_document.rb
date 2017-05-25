@@ -29,7 +29,7 @@ def with_pull_request_creation(organization_name:, repo:, branch_name:)
   )
 end
 
-['projecthydra', 'projecthydra-labs'].each do |organization_name|
+['samvera', 'samvera-labs'].each do |organization_name|
 
   repos = github.repos.list(org: organization_name)
   contributing_content = File.read(File.expand_path('../../CONTRIBUTING.md', __FILE__))
