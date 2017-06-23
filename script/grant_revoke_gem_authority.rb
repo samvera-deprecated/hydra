@@ -65,7 +65,8 @@ FALSE_POSITIVES = [
   'hypatia',
   'rdf-vocab',
   'lerna',
-  'hydrangea'
+  'hydrangea',
+  'valkyrie'
 ]
 # Gems that do not have their own GitHub repositories
 HANGERS_ON = [
