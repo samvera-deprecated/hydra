@@ -32,6 +32,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'DanCoughlin' => "dan.coughlin@gmail.com",
   'darrenleeweber' => 'dweber.consulting@gmail.com',
   'dchandekstark' => "dchandekstark@gmail.com",
+  'dheles' => 'drew@codhicitta.com',
   'elrayle' => 'elrayle@hotmail.com',
   'escowles' => 'escowles@ticklefish.org',
   'grosscol' => 'grosscol@gmail.com',
