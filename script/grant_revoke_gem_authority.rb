@@ -42,6 +42,7 @@ KNOWN_COMMITTER_EMAIL_ADDRESSES = {
   'jenlindner' => 'jenlindner@gmail.com',
   'jkeck' => "jessie.keck@gmail.com",
   'jpstroop' => "jpstroop@gmail.com",
+  'jrochkind' => 'jonathan@dnil.net',
   'jcoyne' => "digger250@gmail.com",
   'lawhorkl' => 'lawhorkl@mail.uc.edu',
   'mjgiarlo' => "leftwing@alumni.rutgers.edu",
