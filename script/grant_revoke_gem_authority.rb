@@ -21,6 +21,7 @@ ORGANIZATION_NAMES = ['samvera', 'samvera-labs', 'samvera-deprecated']
 # Some GitHub user instances do not have an email address defined,
 # so start with the prior list of addresses (registered with Rubygems.org)
 KNOWN_COMMITTER_EMAIL_ADDRESSES = {
+  'aaron-collier' => 'aaron.collier@stanford.edu',
   'awead' => "amsterdamos@gmail.com",
   'atz' => 'ohiocore@gmail.com',
   'barmintor' => "armintor@gmail.com",
