@@ -34,7 +34,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'solrizer', '~> 3.4.1'
   gem.add_dependency 'rsolr', '~> 1.1.2'
   gem.add_dependency 'blacklight', '~> 6.7.3'
-  gem.add_dependency 'nokogiri', '~> 1.7.0'
+  gem.add_dependency 'nokogiri', '~> 1.8.2'
   gem.add_dependency 'ldp', '~> 0.6.3'
   gem.add_dependency 'active-triples', '~> 0.11.0'
   gem.add_development_dependency 'github_api', '~> 0.14.5'
